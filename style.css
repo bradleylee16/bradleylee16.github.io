@@ -1,9 +1,35 @@
-.page-banner{
-  font-family: Monospace;
-  font-size: 25px;
-  color: white;
+body {
+    margin:0;
+    padding:30px;
 }
-            
+
+.page-banner{
+    font-family: Monospace;
+    font-size: 25px;
+    color: white;
+  }
+              
 body{
-  background-color:black;
+    background-color:#051e08;
+}
+
+#textart{
+    color:#00FF00;
+    font-family: 'Courier New', Courier, monospace;
+    line-height:8px;
+}
+
+.text{
+    color:#00FF00;
+    font-family: Monospace;
+}
+
+.text-bracket{
+    color:#00FF00;
+    font-family: Monospace;
+}
+
+.text-bracket:hover{
+    color:#051e08;
+    background-color:#00FF00;
 }
