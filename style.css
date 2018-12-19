@@ -1,13 +1,8 @@
-body {
-    margin:0;
-    padding:30px;
-}
-
 .page-banner{
     font-family: Monospace;
     font-size: 25px;
     color: white;
-  }
+}
               
 body{
     background-color:#051e08;
@@ -24,12 +19,7 @@ body{
     font-family: Monospace;
 }
 
-.text-bracket{
-    color:#00FF00;
-    font-family: Monospace;
-}
-
-.text-bracket:hover{
+.button:hover{
     color:#051e08;
     background-color:#00FF00;
 }
