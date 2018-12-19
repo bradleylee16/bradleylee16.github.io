@@ -23,3 +23,9 @@ body{
     color:#051e08;
     background-color:#00FF00;
 }
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
