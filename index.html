@@ -5,6 +5,7 @@
         <title>Welcome</title>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="script.js"></script>
         <style>
             body {
@@ -26,7 +27,61 @@
             }
 
             .indent {
-                margin-left: 50px;
+                margin-left: 30px;
+                line-height: 17px;
+            }
+
+            .footer{
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                padding-bottom: 50px;
+            }
+
+            .keyText{
+                font-size: 24px;
+                color:#00FF00;
+                font-family: Monospace;
+            }
+            
+            #field{
+                font-size: 28px;
+                color:#00FF00;
+                font-family: Monospace;
+            }
+
+            #field::after {
+                content: "";
+                top: 0;
+                right: -10px;
+                /* Remove display: inline-block if not required to be on the same line as text etc */
+                display: inline-block;
+                background-color: #00FF00;
+                
+                width: 10px;
+                /* Set height to the line height of .text */
+                height: 24px;
+                /* 
+                Animation paramaters:
+                blink = animation-name, 
+                1s = animation-duration, 
+                step-end = animation-timing-function,
+                infinite = animation-iteration-count
+                */
+                -webkit-animation: blink 1s step-end infinite;
+                animation: blink 1s step-end infinite;
+            }
+
+            @-webkit-keyframes blink {
+                0% { opacity: 1.0; }
+                50% { opacity: 0.0; }
+                100% { opacity: 1.0; }
+            }
+
+            @keyframes blink {
+                0% { opacity: 1.0; }
+                50% { opacity: 0.0; }
+                100% { opacity: 1.0; }
             }
         </style>
     </head>
@@ -36,8 +91,8 @@
         <div id="textart">
             <p>&nbsp;██████╗ ██████╗ &nbsp;█████╗ ██████╗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ██╗&nbsp;&nbsp;&nbsp;&nbsp;     ███████╗███████╗</p>
             <p>&nbsp;██╔══██╗██╔══██╗██╔══██╗██╔══██╗   &nbsp;&nbsp;&nbsp; ██║     &nbsp;&nbsp;&nbsp;&nbsp;██╔════╝██╔════╝</p>
-            <p>&nbsp;██████╔╝██████╔╝███████║██║&nbsp;  ██║ &nbsp;&nbsp;&nbsp;   ██║     &nbsp;&nbsp;&nbsp;&nbsp;█████╗  █████╗ </p>
-            <p>&nbsp;██╔══██╗██╔══██╗██╔══██║██║&nbsp;  ██║ &nbsp;&nbsp;&nbsp;   ██║     &nbsp;&nbsp;&nbsp;&nbsp;██╔══╝  ██╔══╝ </p>
+            <p>&nbsp;██████╔╝██████╔╝███████║██║&nbsp;  ██║ &nbsp;&nbsp;&nbsp;   ██║     &nbsp;&nbsp;&nbsp;&nbsp;█████╗ &nbsp;█████╗ </p>
+            <p>&nbsp;██╔══██╗██╔══██╗██╔══██║██║&nbsp;  ██║ &nbsp;&nbsp;&nbsp;   ██║     &nbsp;&nbsp;&nbsp;&nbsp;██╔══╝ &nbsp;██╔══╝ </p>
             <p>&nbsp;██████╔╝██║ &nbsp;██║██║&nbsp;  ██║██████╔╝  &nbsp;&nbsp;&nbsp;  ███████╗███████╗███████╗</p>
             <p>&nbsp;╚═════╝ ╚═╝ &nbsp;╚═╝╚═╝&nbsp;  ╚═╝╚═════╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ╚══════╝╚══════╝╚══════╝</p>
         </div>
@@ -67,20 +122,13 @@
                 </div>
             </div>
         </div>
+        <div class="footer">
+            <!--<button onclick="swap();">switch</button>
+            <br>
+            <button onclick="reset();">reset</button>
+            <br>-->
+            <span class="keyText">&nbsp;></span>
+            <span class="keyText" id="field"></span>
+        </div>
     </body>
-</html>
-                                                            
-
-<!--
-<li>Brad grew up and lives in New Jersey</li>
-<li>He is currently studying computer science at the University of Maryland</li>
-<li>In his spare time, he enjoys watching movies and TV</li>
-
-<li>Text Clock</li>
-<li>Leetcodes</li>
-<li>Coming Soon!</li>
- 
-<li>Resume</li>
-<li>Contact Info</li>
--->
-                                                            
+</html>                                     
