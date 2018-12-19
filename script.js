@@ -6,7 +6,13 @@ function type(elem, txt, speed) {
     if (i < txt.length) {
         document.getElementById(elem).innerHTML += txt.charAt(i);
         i++;
-        setTimeout(function(){type(elem, txt, speed)}, speed);
+        timeouts.push(setTimeout(function(){type(elem, txt, speed)}, speed));
+    }
+}
+
+function clearTimeouts() {
+    for (var i=0; i<timeouts.length; i++) {
+        clearTimeout(timeouts[i]);
     }
 }
 
@@ -29,6 +35,7 @@ var dict3 = {
 
 function hideOthers(id) {
     i = 0;
+    clearTimeouts();
     if (id == "one") {
         document.getElementById("1a").innerHTML = "";
         document.getElementById("1b").innerHTML = "";
@@ -57,10 +64,10 @@ function accordion(id) {
                 i = 0;
                 type("1b", dict1["1b"], speed);
             }, 1500));
-            setTimeout(function(){
+            timeouts.push(setTimeout(function(){
                 i = 0;
                 type("1c", dict1["1c"], speed);
-            }, 5600);
+            }, 5600));
         }
         if (id == "two") {
             hideOthers("two");
@@ -68,14 +75,14 @@ function accordion(id) {
             document.getElementById("three").setAttribute("class", "w3-hide");
             i = 0;
             type("2a", dict2["2a"], speed);
-            setTimeout(function(){
+            timeouts.push(setTimeout(function(){
                 i = 0;
                 type("2b", dict2["2b"], speed);
-            }, 1200);
-            setTimeout(function(){
+            }, 1200));
+            timeouts.push(setTimeout(function(){
                 i = 0;
                 type("2c", dict2["2c"], speed);
-            }, 2200);
+            }, 2200));
         }
         if (id == "three") {
             hideOthers("three");
@@ -83,10 +90,10 @@ function accordion(id) {
             document.getElementById("one").setAttribute("class", "w3-hide");
             i = 0;
             type("3a", dict3["3a"], speed);
-            setTimeout(function(){
+            timeouts.push(setTimeout(function(){
                 i = 0;
                 type("3b", dict3["3b"], speed);
-            }, 1000);
+            }, 1000));
         }
         
     } else { 
