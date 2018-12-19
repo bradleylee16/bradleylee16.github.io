@@ -5,9 +5,9 @@ var allowedChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
                     "p","q","r","s","t","u","v","w","x","y","z","A","B","C","D",
                     "E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S",
                     "T","U","V","W","X","Y","Z"];
-var visited = [false, false, false];
+var visited = [false, false, false, false];
 var entered;
-var noRetype = true;
+var noRetype = false;
 
 var dict1 = {
     "1a": "> Brad is from New Jersey",
@@ -23,7 +23,14 @@ var dict2 = {
 
 var dict3 = {
     "3a": "> Resume",
-    "3b": "> Contact"
+    "3b": "> Contact",
+    "3c": "> Email"
+}
+
+var dict4 = {
+    "4a": "education",
+    "4b": "experience",
+    "4c": "courseload"
 }
 
 document.onkeydown = function(evt) {
@@ -39,6 +46,12 @@ document.onkeydown = function(evt) {
                 accordion("two");
             } else if (entered == "career" || entered == "Career") {
                 accordion("three");
+            } else if (entered == "resume" || entered == "Resume") {
+                accordion("four");
+            } else if (entered == "swap") {
+                swap();
+            } else if (entered == "reset") {
+                reset();
             }
         } else if (allowedChars.includes(evt.key)) {
             document.getElementById("field").innerHTML += evt.key;
@@ -63,17 +76,25 @@ function clearTimeouts() {
 function hideOthers(id) {
     i = 0;
     clearTimeouts();
-    if (id == "one") {
+    if (id == "one"|| id == "all") {
         document.getElementById("1a").innerHTML = "";
         document.getElementById("1b").innerHTML = "";
         document.getElementById("1c").innerHTML = "";
-    } else if (id == "two") {
+    }
+    if (id == "two"|| id == "all") {
         document.getElementById("2a").innerHTML = "";
         document.getElementById("2b").innerHTML = "";
         document.getElementById("2c").innerHTML = "";
-    } else if (id == "three") {
+    }
+    if (id == "three"|| id == "all") {
         document.getElementById("3a").innerHTML = "";
         document.getElementById("3b").innerHTML = "";
+        document.getElementById("3c").innerHTML = "";
+    }
+    if (id == "four" || id == "all") {
+        document.getElementById("4a").innerHTML = "";
+        document.getElementById("4b").innerHTML = "";
+        document.getElementById("4c").innerHTML = "";
     }
 }
 
@@ -84,6 +105,7 @@ function accordion(id) {
         if (id == "one") {
             document.getElementById("two").setAttribute("class", "w3-hide");
             document.getElementById("three").setAttribute("class", "w3-hide");
+            document.getElementById("four").setAttribute("class", "w3-hide");
             if (!visited[0] || !noRetype) {
                 hideOthers("one");
                 i = 0
@@ -109,6 +131,7 @@ function accordion(id) {
         if (id == "two") {
             document.getElementById("one").setAttribute("class", "w3-hide");
             document.getElementById("three").setAttribute("class", "w3-hide");
+            document.getElementById("four").setAttribute("class", "w3-hide");
             if (!visited[1] || !noRetype) {
                 hideOthers("two");
                 i = 0;
@@ -134,6 +157,7 @@ function accordion(id) {
         if (id == "three") {
             document.getElementById("two").setAttribute("class", "w3-hide");
             document.getElementById("one").setAttribute("class", "w3-hide");
+            document.getElementById("four").setAttribute("class", "w3-hide");
             if (!visited[2] || !noRetype) {
                 hideOthers("three");
                 i = 0;
@@ -142,16 +166,46 @@ function accordion(id) {
                     i = 0;
                     type("3b", dict3["3b"], speed);
                 }, 1000));
+                timeouts.push(setTimeout(function(){
+                    i = 0;
+                    type("3c", dict3["3c"], speed);
+                }, 2200));
             } else if (noRetype) {
                 clearTimeouts();
                 document.getElementById("3a").innerHTML = dict3["3a"];
                 document.getElementById("3b").innerHTML = dict3["3b"];
+                document.getElementById("3c").innerHTML = dict3["3c"];
             }
             if (noRetype) {
                 visited[2] = true;
             }
         }
-        
+        if (id == "four") {
+            document.getElementById("two").setAttribute("class", "w3-hide");
+            document.getElementById("one").setAttribute("class", "w3-hide");
+            document.getElementById("three").setAttribute("class", "w3-hide");
+            if (!visited[3] || !noRetype) {
+                hideOthers("four");
+                i = 0;
+                type("4a", dict4["4a"], speed);
+                timeouts.push(setTimeout(function(){
+                    i = 0;
+                    type("4b", dict4["4b"], speed);
+                }, 1000));
+                timeouts.push(setTimeout(function(){
+                    i = 0;
+                    type("4c", dict4["4c"], speed);
+                }, 2200));
+            } else if (noRetype) {
+                clearTimeouts();
+                document.getElementById("4a").innerHTML = dict4["4a"];
+                document.getElementById("4b").innerHTML = dict4["4b"];
+                document.getElementById("4c").innerHTML = dict4["4c"];
+            }
+            if (noRetype) {
+                visited[3] = true;
+            }
+        }
     } else { 
         x.className = x.className.replace(" w3-show", "");
     }
@@ -162,5 +216,6 @@ function swap(){
 }
 
 function reset(){
-    visited = [false, false, false];
+    document.location.reload();
 }
+
