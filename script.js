@@ -33,6 +33,8 @@ var dict4 = {
     "4c": "courseload"
 }
 
+var bulletList = [dict1, dict2, dict3, dict4];
+
 setCookie("history", "");
 setCookie("historyIndex",-1);
 
@@ -43,15 +45,16 @@ document.onkeydown = function (evt) {
         } else if (evt.key == "Enter") {
             entered = document.getElementById("field").innerHTML;
             if (entered != "") {
-                
                 historyPush(entered.toString());
+            } else {
+                instaComplete();
             }
             document.getElementById("field").innerHTML = "";
             if (entered == "about" || entered == "About") {
                 accordion("one");
             } else if (entered == "projects" || entered == "Projects") {
                 accordion("two");
-            } else if (entered == "career" || entered == "Career") {
+            } else if (entered == "contact" || entered == "Contact") {
                 accordion("three");
             } else if (entered == "resume" || entered == "Resume") {
                 accordion("four");
@@ -69,7 +72,7 @@ document.onkeydown = function (evt) {
         } else if (evt.key == "ArrowDown") {
             displayDown();
         } else if (evt.key == "`") {
-            console.log(document.cookie); 
+            clearTimeouts();
         } else if (allowedChars.includes(evt.key)) {
             document.getElementById("field").innerHTML += evt.key;
         }
@@ -146,14 +149,6 @@ function displayDown() {
         }
         console.log("history: [" + getCookie("history") + "] " + "historyIndex: " + getCookie("historyIndex"));
     }
-
-    /*
-    if (historyIndex <= 20 || (history.length > 0 && historyIndex < history.length)) {
-        document.getElementById("field").innerHTML = history[historyIndex];
-        setCookie("historyIndex", historyIndex+1);
-    } else {
-        document.getElementById("field").innerHTML = "";
-    }*/
 }
 
 function type(elem, txt, speed) {
@@ -195,7 +190,30 @@ function hideOthers(id) {
     }
 }
 
+function instaComplete() {
+    clearTimeouts();
+    for (var i = 0; i < bulletList.length; i++) {
+        for (var key in bulletList[i]) {
+            document.getElementById(key).innerHTML = bulletList[i][key];
+        }
+    }
+    /*
+    document.getElementById("1a").innerHTML = dict1["1a"];
+    document.getElementById("1b").innerHTML = dict1["1b"];
+    document.getElementById("1c").innerHTML = dict1["1c"];
+    document.getElementById("2a").innerHTML = dict2["2a"];
+    document.getElementById("2b").innerHTML = dict2["2b"];
+    document.getElementById("2c").innerHTML = dict2["2c"];
+    document.getElementById("2a").innerHTML = dict2["2a"];
+    document.getElementById("2b").innerHTML = dict2["2b"];
+    document.getElementById("2c").innerHTML = dict2["2c"];
+    document.getElementById("4a").innerHTML = dict3["3a"];
+    document.getElementById("4b").innerHTML = dict2["3b"];
+    document.getElementById("4c").innerHTML = dict2["3c"];*/
+}
+
 function accordion(id) {
+    hideOthers("all");
     var x = document.getElementById(id);
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
