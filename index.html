@@ -20,6 +20,7 @@
                 font-size:32px;
                 background-color:#051e08;
                 border:none;
+                line-height:45px;
             }
 
             .button:hover {
@@ -29,14 +30,18 @@
 
             .indent {
                 margin-left: 30px;
-                line-height: 17px;
+                line-height: 20px;
             }
 
-            .footer{
-                position: fixed;
+            #footer{
+                position: absolute;
                 bottom: 0;
                 width: 100%;
+                height: 40px;
                 padding-bottom: 50px;
+                padding-top: 50px;
+                min-height: 50px;
+                clear:both;
             }
 
             .keyText{
@@ -98,51 +103,52 @@
             <p>&nbsp;╚═════╝ ╚═╝ &nbsp;╚═╝╚═╝&nbsp;  ╚═╝╚═════╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ╚══════╝╚══════╝╚══════╝</p>
         </div>
         <br>
-        <div>
-            <button class="button" onclick="accordion('one');" style="padding-right:450px">[Info]</button>
-            <div id="one" class="w3-hide">
-                <div class="text indent">
-                    <p id="1a"></p>
-                    <p id="1b"></p>
-                    <p id="1c"></p>
+        <div id="con">
+            <div id="content">
+                <button class="button" onclick="accordion('one');" style="padding-right:450px">[About]</button>
+                <div id="one" class="w3-hide">
+                    <div class="text indent">
+                        <p id="1a"></p>
+                        <p id="1b"></p>
+                        <a id="1c" href="features.html"></a>
+                    </div>
+                </div>
+                <div style="height:5px;font-size:1px;">&nbsp;</div>
+                <button class="button" onclick="accordion('two');" style="padding-right:373px">[Projects]</button>
+                <div id="two" class="w3-hide">
+                    <div class="text indent">
+                        <div style="height:15px;font-size:1px;">&nbsp;</div>
+                        <a id="2a" class="text" href="clock.html" style="padding-right:300px; padding-left:10px"></a><br>
+                        <div style="height:15px;font-size:1px;">&nbsp;</div>
+                        <a id="2b" href="leetcodes.html" style="padding-right:312px; padding-left:10px"></a><br>
+                        <div style="height:15px;font-size:1px;">&nbsp;</div>
+                        <a id="2c" href="features.html" style="padding-right:275px; padding-left:10px"></a><br>
+                    </div>
+                </div>
+                <div style="height:10px;font-size:1px;">&nbsp;</div>
+                <button class="button" onclick="accordion('three');" style="padding-right:392px">[Contact]</button>
+                <div id="three" class="w3-hide">
+                    <div class="text indent">
+                        <div style="height:10px;font-size:1px;">&nbsp;</div>
+                        <span id="3a"></span><span id="3b"></span><br>
+                        <div style="height:10px;font-size:1px;">&nbsp;</div>
+                        <a id="3c" href="https://www.linkedin.com/in/dong-hun-lee"></a>
+                    </div>
+                </div>
+                <div style="height:10px;font-size:1px;">&nbsp;</div>
+                <button class="button" onclick="accordion('four');" style="padding-right:411px">[Resume]</button>
+                <div id="four" class="w3-hide">
+                    <div class="text indent">
+                        <p id="4a"></p>
+                        <p id="4b"></p>
+                        <p id="4c"></p>
+                    </div>
                 </div>
             </div>
-            <button class="button" onclick="accordion('two');" style="padding-right:373px">[Projects]</button>
-            <div id="two" class="w3-hide">
-                <div class="text indent">
-                    <p id="2a"></p>
-                    <p id="2b"></p>
-                    <p id="2c"></p>
-                </div>
+            <div id="footer">
+                <span class="keyText">&nbsp;></span>
+                <span class="keyText" id="field"></span>
             </div>
-            <button class="button" onclick="accordion('three');" style="padding-right:392px">[Contact]</button>
-            <div id="three" class="w3-hide">
-                <div class="text indent">
-                    <p id="3a"></p>
-                    <p id="3b"></p>
-                    <p id="3c"></p>
-                </div>
-            </div>
-            <button class="button" onclick="accordion('four');" style="padding-right:411px">[Resume]</button>
-            <div id="four" class="w3-hide">
-                <div class="text indent">
-                    <p id="4a"></p>
-                    <p id="4b"></p>
-                    <p id="4c"></p>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <!--<button onclick="swap();">switch</button>
-            <br>
-            <button onclick="reset();">reset</button>
-            <br>-->
-            <span class="keyText">&nbsp;></span>
-            <span class="keyText" id="field"></span>
         </div>
     </body>
-</html>
-                                                            
-                                                            
-
-                                                           
+</html>                                          
