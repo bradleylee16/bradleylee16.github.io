@@ -1,0 +1,171 @@
+<!doctype: html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Clock</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="clock.css">
+    </head>
+    <body onload="displayTime()">
+        <br>
+        <br>
+        <div align="center">
+            <span id="it" class="text-lit">IT</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="is" class="text-lit">IS</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="30" class="text">HALF</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="10" class="text">TEN</span>
+            <br>
+            <span id="15" class="text">QUARTER</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="20" class="text">TWENTY</span>
+            <br>
+            <span id="5m" class="text">FIVE</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="minutes" class="text">MINUTES</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="to" class="text">TO</span>
+            <br>
+            <span id="past" class="text">PAST</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="1" class="text">ONE</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="3" class="text">THREE</span>
+            <br>
+            <span id="2" class="text">TWO</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="4" class="text">FOUR</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="5" class="text">FIVE</span>
+            <br>
+            <span id="6" class="text">SIX</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="7" class="text">SEVEN</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="8" class="text">EIGHT</span>
+            <br>
+            <span id="9" class="text">NINE</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="10" class="text">TEN</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="11" class="text">ELEVEN</span>
+            <br>
+            <span id="12" class="text">TWELVE</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="oclock" class="text">O'CLOCK</span>
+            <br><br><br>
+            <span id="x16" class="x16">x16 speed</span>
+        </div>
+
+        <script>
+        //<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+            var day = new Date();
+            var hour = day.getHours();
+            var minute = day.getMinutes();
+            var hourDisp = hour;
+            /*
+            $(document).ready(function() {
+                $('body').keyup(function(key){
+                    if (key.keyCode == 32) {
+                        console.log("alright");
+                    }
+                });
+            });
+            */
+            function displayTime() {
+                if (hour > 12) { //convert the 24 hour time representation into 12 hour time representation
+                    hourDisp = hour-12;
+                } else if (hour == 0)
+                    hourDisp = 12;
+
+                if (minute >= 40) { //light up the correct "hour" number
+                    if (hourDisp == 12) {
+                        //document.getElementById("12").setAttribute("class", "text");
+                        clearHour();
+                        document.getElementById("1").setAttribute("class", "text-lit");
+                    } else {
+                        //document.getElementById(hourDisp.toString()).setAttribute("class", "text");
+                        clearHour();
+                        document.getElementById((hourDisp + 1).toString()).setAttribute("class", "text-lit");
+                    }
+                } else {
+                    if (hourDisp == 1) {
+                        //document.getElementById("12").setAttribute("class", "text");
+                        clearHour();
+                        document.getElementById(hourDisp.toString()).setAttribute("class", "text-lit");
+                    } else {
+                        //document.getElementById((hourDisp - 1).toString()).setAttribute("class", "text");
+                        clearHour();
+                        document.getElementById(hourDisp.toString()).setAttribute("class", "text-lit");
+                    }
+                }
+
+                if (!(minute >= 0 && minute < 5)) { //lights up either "to" or "past"
+                    if (minute < 40) {
+                        document.getElementById("to").setAttribute("class", "text");
+                        document.getElementById("past").setAttribute("class", "text-lit");
+                    } else {
+                        document.getElementById("past").setAttribute("class", "text");
+                        document.getElementById("to").setAttribute("class", "text-lit");
+                    }
+                }
+
+                if (!(minute >= 0 && minute < 5)) { //lights up "O'Clock"
+                    document.getElementById("oclock").setAttribute("class", "text");
+                } else {
+                    document.getElementById("oclock").setAttribute("class", "text-lit");
+                }
+                
+                if ((minute < 5) || (minute >= 15 && minute < 20) || (minute >= 30 && minute < 40) || (minute >= 45 && minute < 50)) {//lights up "minutes"
+                    document.getElementById("minutes").setAttribute("class", "text");
+                } else {
+                    document.getElementById("minutes").setAttribute("class", "text-lit");
+                }
+
+                if (minute >= 5 && minute < 10) { //correctly lights up minute
+                    document.getElementById("5m").setAttribute("class", "text-lit");
+                } else if (minute >= 10 && minute < 15) {
+                    clearMinute();
+                    document.getElementById("10").setAttribute("class", "text-lit");
+                } else if (minute >= 15 && minute < 20) {
+                    clearMinute();
+                    document.getElementById("15").setAttribute("class", "text-lit");
+                } else if (minute >= 20 && minute < 30) {
+                    clearMinute();
+                    document.getElementById("20").setAttribute("class", "text-lit");
+                } else if (minute >= 30 && minute < 40) {
+                    clearMinute();
+                    document.getElementById("30").setAttribute("class", "text-lit");
+                } else if (minute >= 40 && minute < 45) {
+                    clearMinute();
+                    document.getElementById("20").setAttribute("class", "text-lit");
+                } else if (minute >= 45 && minute < 50) {
+                    clearMinute();
+                    document.getElementById("15").setAttribute("class", "text-lit");
+                } else if (minute >= 50 && minute < 55) {
+                    clearMinute();
+                    document.getElementById("10").setAttribute("class", "text-lit");
+                } else if (minute >= 55 && minute < 60) {
+                    clearMinute();
+                    document.getElementById("5m").setAttribute("class", "text-lit");
+                } else if (minute == 0) {
+                    clearMinute();
+                }
+
+                var t = setTimeout(displayTime, 5000);
+            }
+
+            function clearHour() {
+                document.getElementById("1").setAttribute("class", "text");
+                document.getElementById("2").setAttribute("class", "text");
+                document.getElementById("3").setAttribute("class", "text");
+                document.getElementById("4").setAttribute("class", "text");
+                document.getElementById("5").setAttribute("class", "text");
+                document.getElementById("6").setAttribute("class", "text");
+                document.getElementById("7").setAttribute("class", "text");
+                document.getElementById("8").setAttribute("class", "text");
+                document.getElementById("9").setAttribute("class", "text");
+                document.getElementById("10").setAttribute("class", "text");
+                document.getElementById("11").setAttribute("class", "text");
+                document.getElementById("12").setAttribute("class", "text");
+            }
+
+            function clearMinute() {
+                document.getElementById("30").setAttribute("class", "text");
+                document.getElementById("15").setAttribute("class", "text");
+                document.getElementById("10").setAttribute("class", "text");
+                document.getElementById("20").setAttribute("class", "text");
+                document.getElementById("5m").setAttribute("class", "text");
+            }
+
+        </script>
+    </body>
+</html>
