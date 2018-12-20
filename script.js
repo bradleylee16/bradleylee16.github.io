@@ -1,5 +1,5 @@
 var i = 0;
-var speed = 50;
+var speed = 25;
 var timeouts = [];
 var allowedChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
                     "p","q","r","s","t","u","v","w","x","y","z","A","B","C","D",
@@ -10,21 +10,21 @@ var entered;
 var noRetype = false;
 
 var dict1 = {
-    "1a": "> Brad is from New Jersey",
-    "1b": "> He is currently studying computer science at the University of Maryland",
-    "1c": "> In his spare time, he enjoys watching movies and TV"
+    "1a": "> Brad Lee is from New Jersey. He made this website",
+    "1b": "> Brad studies computer science at the University of Maryland",
+    "1c": "> Click or type info to find out more about this website"
 }
 
 var dict2 = {
-    "2a": "> Text Clock",
-    "2b": "> Leetcodes",
+    "2a": "> [Text Clock]",
+    "2b": "> [Leetcodes]",
     "2c": "> Coming Soon!"
 }
 
 var dict3 = {
-    "3a": "> Resume",
-    "3b": "> Contact",
-    "3c": "> Email"
+    "3a": "> bradleylee16",
+    "3b": "@gmail.com",
+    "3c": "> [Linkedin]"
 }
 
 var dict4 = {
@@ -33,14 +33,21 @@ var dict4 = {
     "4c": "courseload"
 }
 
-document.onkeydown = function(evt) {
+setCookie("history", "");
+setCookie("historyIndex",-1);
+
+document.onkeydown = function (evt) {
     if ("key" in evt) {
         if (evt.key == "Backspace") {
             document.getElementById("field").innerHTML = document.getElementById("field").innerHTML.slice(0,-1);
         } else if (evt.key == "Enter") {
             entered = document.getElementById("field").innerHTML;
+            if (entered != "") {
+                
+                historyPush(entered.toString());
+            }
             document.getElementById("field").innerHTML = "";
-            if (entered == "info" || entered == "Info") {
+            if (entered == "about" || entered == "About") {
                 accordion("one");
             } else if (entered == "projects" || entered == "Projects") {
                 accordion("two");
@@ -52,12 +59,102 @@ document.onkeydown = function(evt) {
                 swap();
             } else if (entered == "reset") {
                 reset();
+            } else if (entered == "info") {
+                window.location.href = "features.html";
+            } else if (entered == "history") {
+                console.log(history.toString());
             }
+        } else if (evt.key == "ArrowUp") {
+            displayUp();
+        } else if (evt.key == "ArrowDown") {
+            displayDown();
+        } else if (evt.key == "`") {
+            console.log(document.cookie); 
         } else if (allowedChars.includes(evt.key)) {
             document.getElementById("field").innerHTML += evt.key;
         }
     }
-};
+}
+
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function historyPush(str) {
+    var list = getCookie("history");
+    if (list == "") {
+        setCookie("history",str);
+    } else {
+        list = list.split(',');
+        if (list.length == 20) {
+            list.shift()
+        }
+        list.push(str);
+        setCookie("history",list.toString());
+    }
+    setCookie("historyIndex", getCookie("history").split(',').length-1);
+    console.log("cookie: " + getCookie("history") + " historyIndex: " + getCookie("historyIndex"));
+}
+
+function displayUp() {
+    var history = getCookie("history").split(',');
+    var historyIndex = Number(getCookie("historyIndex"));
+    if (historyIndex >= 0) {
+        document.getElementById("field").innerHTML = history[historyIndex];
+        setCookie("historyIndex", historyIndex-1);
+    } else {
+        document.getElementById("field").style.color="#00E600";
+        timeouts.push(setTimeout(function(){
+            document.getElementById("field").style.color="#00FF00";
+        }, 50));
+    }
+    console.log("history: [" + getCookie("history") + "] " + "historyIndex: " + getCookie("historyIndex"));
+}
+
+function displayDown() {
+    var history = getCookie("history").split(',');
+    var historyIndex = Number(getCookie("historyIndex"));
+    if (document.getElementById("field").innerHTML != "") {
+        if (historyIndex == -1) {
+            historyIndex += 2;
+        }
+        if (historyIndex >= history.length) {
+            document.getElementById("field").innerHTML = "";
+            setCookie("historyIndex", history.length-1);
+        } else {
+            document.getElementById("field").innerHTML = history[historyIndex];
+            setCookie("historyIndex", historyIndex+1);
+        }
+        console.log("history: [" + getCookie("history") + "] " + "historyIndex: " + getCookie("historyIndex"));
+    }
+
+    /*
+    if (historyIndex <= 20 || (history.length > 0 && historyIndex < history.length)) {
+        document.getElementById("field").innerHTML = history[historyIndex];
+        setCookie("historyIndex", historyIndex+1);
+    } else {
+        document.getElementById("field").innerHTML = "";
+    }*/
+}
 
 function type(elem, txt, speed) {
     if (i < txt.length) {
@@ -113,11 +210,11 @@ function accordion(id) {
                 timeouts.push(setTimeout(function(){
                     i = 0;
                     type("1b", dict1["1b"], speed);
-                }, 1500));
+                }, 1400));
                 timeouts.push(setTimeout(function(){
                     i = 0;
                     type("1c", dict1["1c"], speed);
-                }, 5600));
+                }, 3100));
             } else if (noRetype) {
                 clearTimeouts();
                 document.getElementById("1a").innerHTML = dict1["1a"];
@@ -139,11 +236,11 @@ function accordion(id) {
                 timeouts.push(setTimeout(function(){
                     i = 0;
                     type("2b", dict2["2b"], speed);
-                }, 1200));
+                }, 500));
                 timeouts.push(setTimeout(function(){
                     i = 0;
                     type("2c", dict2["2c"], speed);
-                }, 2200));
+                }, 1000));
             } else if (noRetype) {
                 clearTimeouts();
                 document.getElementById("2a").innerHTML = dict2["2a"];
@@ -165,11 +262,11 @@ function accordion(id) {
                 timeouts.push(setTimeout(function(){
                     i = 0;
                     type("3b", dict3["3b"], speed);
-                }, 1000));
+                }, 400));
                 timeouts.push(setTimeout(function(){
                     i = 0;
                     type("3c", dict3["3c"], speed);
-                }, 2200));
+                }, 800));
             } else if (noRetype) {
                 clearTimeouts();
                 document.getElementById("3a").innerHTML = dict3["3a"];
@@ -191,11 +288,11 @@ function accordion(id) {
                 timeouts.push(setTimeout(function(){
                     i = 0;
                     type("4b", dict4["4b"], speed);
-                }, 1000));
+                }, 400));
                 timeouts.push(setTimeout(function(){
                     i = 0;
                     type("4c", dict4["4c"], speed);
-                }, 2200));
+                }, 800));
             } else if (noRetype) {
                 clearTimeouts();
                 document.getElementById("4a").innerHTML = dict4["4a"];
@@ -218,4 +315,3 @@ function swap(){
 function reset(){
     document.location.reload();
 }
-
