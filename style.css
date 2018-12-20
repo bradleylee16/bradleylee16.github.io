@@ -12,11 +12,13 @@ body{
     color:#00FF00;
     font-family: 'Courier New', Courier, monospace;
     line-height:8px;
+    min-width: 650px;
 }
 
 .text{
     color:#00FF00;
     font-family: Monospace;
+    font-size: 20px;
 }
 
 .button:hover{
@@ -28,4 +30,15 @@ body{
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+a {
+    font-size: 20px;
+    line-height: 10px;
+    text-decoration: none;
+}
+
+a:hover {
+    color:#051e08;
+    background-color:#00FF00;
 }
