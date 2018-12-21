@@ -6,13 +6,8 @@
               
 body{
     background-color:#051e08;
-}
-
-#textart{
-    color:#00FF00;
-    font-family: 'Courier New', Courier, monospace;
-    line-height:8px;
-    min-width: 650px;
+    margin:0;
+    padding:20px;
 }
 
 .text{
@@ -21,15 +16,32 @@ body{
     font-size: 20px;
 }
 
+.button {
+    font-size:32px;
+    line-height:40px;
+    margin:5px;
+    cursor: default;
+}
+
 .button:hover{
     color:#051e08;
     background-color:#00FF00;
+    cursor: default;
 }
 
 .footer{
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
 }
 
 a {
@@ -41,4 +53,70 @@ a {
 a:hover {
     color:#051e08;
     background-color:#00FF00;
+}
+
+.indent {
+    margin-left: 30px;
+    line-height: 20px;
+}
+
+#footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    min-height: 50px;
+    clear:both;
+}
+
+.keyText{
+    font-size: 24px;
+    color:#00FF00;
+    font-family: Monospace;
+}
+
+#about{padding-right:450px;}
+
+#projects{padding-right:373px;}
+
+#contact{padding-right:392px;}
+
+#resume{padding-right:411px;}
+
+#textart{
+    color:#00FF00;
+    font-family: 'Courier New', Courier, monospace;
+    line-height:8px;
+}
+
+#field{
+    font-size: 28px;
+    color:#00FF00;
+    font-family: Monospace;
+}
+
+#field::after {
+    content: "";
+    top: 0;
+    right: -10px;
+    display: inline-block;
+    background-color: #00FF00;
+    width: 10px;
+    height: 24px;
+    -webkit-animation: blink 1s step-end infinite;
+    animation: blink 1s step-end infinite;
+}
+
+@-webkit-keyframes blink {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blink {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
 }
