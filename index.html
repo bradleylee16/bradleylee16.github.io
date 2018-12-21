@@ -8,93 +8,10 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="script.js"></script>
-        <style>
-            body {
-                margin:0;
-                padding:20px;
-            }
-
-            .button {
-                color:#00FF00;
-                font-family: Monospace;
-                font-size:32px;
-                background-color:#051e08;
-                border:none;
-                line-height:45px;
-            }
-
-            .button:hover {
-                background-color:#00FF00;
-                color:#051e08;
-            }
-
-            .indent {
-                margin-left: 30px;
-                line-height: 20px;
-            }
-
-            #footer{
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                height: 40px;
-                padding-bottom: 50px;
-                padding-top: 50px;
-                min-height: 50px;
-                clear:both;
-            }
-
-            .keyText{
-                font-size: 24px;
-                color:#00FF00;
-                font-family: Monospace;
-            }
-            
-            #field{
-                font-size: 28px;
-                color:#00FF00;
-                font-family: Monospace;
-            }
-
-            #field::after {
-                content: "";
-                top: 0;
-                right: -10px;
-                /* Remove display: inline-block if not required to be on the same line as text etc */
-                display: inline-block;
-                background-color: #00FF00;
-                
-                width: 10px;
-                /* Set height to the line height of .text */
-                height: 24px;
-                /* 
-                Animation paramaters:
-                blink = animation-name, 
-                1s = animation-duration, 
-                step-end = animation-timing-function,
-                infinite = animation-iteration-count
-                */
-                -webkit-animation: blink 1s step-end infinite;
-                animation: blink 1s step-end infinite;
-            }
-
-            @-webkit-keyframes blink {
-                0% { opacity: 1.0; }
-                50% { opacity: 0.0; }
-                100% { opacity: 1.0; }
-            }
-
-            @keyframes blink {
-                0% { opacity: 1.0; }
-                50% { opacity: 0.0; }
-                100% { opacity: 1.0; }
-            }
-        </style>
     </head>
     
     <body>
-        <br>
-        <div id="textart">
+        <div id="textart" class="noselect">
             <p>&nbsp;██████╗ ██████╗ &nbsp;█████╗ ██████╗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ██╗&nbsp;&nbsp;&nbsp;&nbsp;     ███████╗███████╗</p>
             <p>&nbsp;██╔══██╗██╔══██╗██╔══██╗██╔══██╗   &nbsp;&nbsp;&nbsp; ██║     &nbsp;&nbsp;&nbsp;&nbsp;██╔════╝██╔════╝</p>
             <p>&nbsp;██████╔╝██████╔╝███████║██║&nbsp;  ██║ &nbsp;&nbsp;&nbsp;   ██║     &nbsp;&nbsp;&nbsp;&nbsp;█████╗ &nbsp;█████╗ </p>
@@ -103,9 +20,10 @@
             <p>&nbsp;╚═════╝ ╚═╝ &nbsp;╚═╝╚═╝&nbsp;  ╚═╝╚═════╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ╚══════╝╚══════╝╚══════╝</p>
         </div>
         <br>
-        <div id="con">
-            <div id="content">
-                <button class="button" onclick="accordion('one');" style="padding-right:450px">[About]</button>
+        <div id="con" class="text">
+
+            <div id="content" class="noselect">
+                <p id="about" class="button" onclick="accordion('one');">[About]</p>
                 <div id="one" class="w3-hide">
                     <div class="text indent">
                         <p id="1a"></p>
@@ -113,8 +31,8 @@
                         <a id="1c" href="features.html"></a>
                     </div>
                 </div>
-                <div style="height:5px;font-size:1px;">&nbsp;</div>
-                <button class="button" onclick="accordion('two');" style="padding-right:373px">[Projects]</button>
+                
+                <p id="projects" class="button" onclick="accordion('two');">[Projects]</p>
                 <div id="two" class="w3-hide">
                     <div class="text indent">
                         <div style="height:15px;font-size:1px;">&nbsp;</div>
@@ -125,8 +43,8 @@
                         <a id="2c" href="features.html" style="padding-right:275px; padding-left:10px"></a><br>
                     </div>
                 </div>
-                <div style="height:10px;font-size:1px;">&nbsp;</div>
-                <button class="button" onclick="accordion('three');" style="padding-right:392px">[Contact]</button>
+                
+                <p id="contact" class="button" onclick="accordion('three');">[Contact]</p>
                 <div id="three" class="w3-hide">
                     <div class="text indent">
                         <div style="height:10px;font-size:1px;">&nbsp;</div>
@@ -135,8 +53,8 @@
                         <a id="3c" href="https://www.linkedin.com/in/dong-hun-lee"></a>
                     </div>
                 </div>
-                <div style="height:10px;font-size:1px;">&nbsp;</div>
-                <button class="button" onclick="accordion('four');" style="padding-right:411px">[Resume]</button>
+                
+                <p id="resume" class="button" onclick="accordion('four');">[Resume]</p>
                 <div id="four" class="w3-hide">
                     <div class="text indent">
                         <p id="4a"></p>
@@ -144,6 +62,7 @@
                         <p id="4c"></p>
                     </div>
                 </div>
+
             </div>
             <div id="footer">
                 <span class="keyText">&nbsp;></span>
@@ -151,4 +70,4 @@
             </div>
         </div>
     </body>
-</html>                                     
+</html>
