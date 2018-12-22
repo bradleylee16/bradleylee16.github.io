@@ -4,10 +4,10 @@ var timeouts = [];
 var allowedChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
                     "p","q","r","s","t","u","v","w","x","y","z","A","B","C","D",
                     "E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S",
-                    "T","U","V","W","X","Y","Z"];
+                    "T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"];
 var visited = [false, false, false, false];
 var entered;
-var noRetype = false;
+var noRetype = true;
 
 var dict1 = {
     "1a": "> Brad Lee is from New Jersey. He made this website",
@@ -28,9 +28,9 @@ var dict3 = {
 }
 
 var dict4 = {
-    "4a": "education",
-    "4b": "experience",
-    "4c": "courseload"
+    "4a": "> education",
+    "4b": "> experience",
+    "4c": "> courseload"
 }
 
 var bulletList = [dict1, dict2, dict3, dict4];
@@ -41,7 +41,11 @@ setCookie("historyIndex",-1);
 document.onkeydown = function (evt) {
     if ("key" in evt) {
         if (evt.key == "Backspace") {
-            document.getElementById("field").innerHTML = document.getElementById("field").innerHTML.slice(0,-1);
+            if (document.getElementById("field").innerHTML.substr(-1) == ";") {
+                document.getElementById("field").innerHTML = document.getElementById("field").innerHTML.slice(0,-6);
+            } else {
+                document.getElementById("field").innerHTML = document.getElementById("field").innerHTML.slice(0,-1);
+            }
         } else if (evt.key == "Enter") {
             entered = document.getElementById("field").innerHTML;
             if (entered != "") {
@@ -64,6 +68,10 @@ document.onkeydown = function (evt) {
                 reset();
             } else if (entered == "info") {
                 window.location.href = "features.html";
+            } else if (entered == "border1") {
+                borders("1");
+            } else if (entered == "border0") {
+                borders("0");
             } else if (entered == "history") {
                 console.log(history.toString());
             }
@@ -72,7 +80,9 @@ document.onkeydown = function (evt) {
         } else if (evt.key == "ArrowDown") {
             displayDown();
         } else if (evt.key == "`") {
-            clearTimeouts();
+            console.log(entered);
+        } else if (evt.keyCode == 32) {
+            document.getElementById("field").innerHTML += "&nbsp;";
         } else if (allowedChars.includes(evt.key)) {
             document.getElementById("field").innerHTML += evt.key;
         }
@@ -115,7 +125,7 @@ function historyPush(str) {
         setCookie("history",list.toString());
     }
     setCookie("historyIndex", getCookie("history").split(',').length-1);
-    console.log("cookie: " + getCookie("history") + " historyIndex: " + getCookie("historyIndex"));
+    console.log("cookie: [" + getCookie("history") + "] historyIndex: " + getCookie("historyIndex"));
 }
 
 function displayUp() {
@@ -197,19 +207,6 @@ function instaComplete() {
             document.getElementById(key).innerHTML = bulletList[i][key];
         }
     }
-    /*
-    document.getElementById("1a").innerHTML = dict1["1a"];
-    document.getElementById("1b").innerHTML = dict1["1b"];
-    document.getElementById("1c").innerHTML = dict1["1c"];
-    document.getElementById("2a").innerHTML = dict2["2a"];
-    document.getElementById("2b").innerHTML = dict2["2b"];
-    document.getElementById("2c").innerHTML = dict2["2c"];
-    document.getElementById("2a").innerHTML = dict2["2a"];
-    document.getElementById("2b").innerHTML = dict2["2b"];
-    document.getElementById("2c").innerHTML = dict2["2c"];
-    document.getElementById("4a").innerHTML = dict3["3a"];
-    document.getElementById("4b").innerHTML = dict2["3b"];
-    document.getElementById("4c").innerHTML = dict2["3c"];*/
 }
 
 function accordion(id) {
@@ -332,4 +329,19 @@ function swap(){
 
 function reset(){
     document.location.reload();
+}
+
+function borders(on) {
+    console.log(on);
+    if (on == "1") {
+        $('#page').css("border" , "2px solid green");
+        $('#divider1').css("border" , "1px solid yellow");
+        $('#textart').css("border" , "1px solid blue");
+        $('#footer').css("border" , "2px solid green");
+    } else if (on == "0") {
+        $('#page').css("border" , "none");
+        $('#divider1').css("border" , "none");
+        $('#textart').css("border" , "none");
+        $('#footer').css("border" , "none");
+    }
 }
