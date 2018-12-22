@@ -11,63 +11,59 @@
     </head>
     
     <body>
-        <div id="textart" class="noselect">
-            <p>&nbsp;██████╗ ██████╗ &nbsp;█████╗ ██████╗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ██╗&nbsp;&nbsp;&nbsp;&nbsp;     ███████╗███████╗</p>
-            <p>&nbsp;██╔══██╗██╔══██╗██╔══██╗██╔══██╗   &nbsp;&nbsp;&nbsp; ██║     &nbsp;&nbsp;&nbsp;&nbsp;██╔════╝██╔════╝</p>
-            <p>&nbsp;██████╔╝██████╔╝███████║██║&nbsp;  ██║ &nbsp;&nbsp;&nbsp;   ██║     &nbsp;&nbsp;&nbsp;&nbsp;█████╗ &nbsp;█████╗ </p>
-            <p>&nbsp;██╔══██╗██╔══██╗██╔══██║██║&nbsp;  ██║ &nbsp;&nbsp;&nbsp;   ██║     &nbsp;&nbsp;&nbsp;&nbsp;██╔══╝ &nbsp;██╔══╝ </p>
-            <p>&nbsp;██████╔╝██║ &nbsp;██║██║&nbsp;  ██║██████╔╝  &nbsp;&nbsp;&nbsp;  ███████╗███████╗███████╗</p>
-            <p>&nbsp;╚═════╝ ╚═╝ &nbsp;╚═╝╚═╝&nbsp;  ╚═╝╚═════╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ╚══════╝╚══════╝╚══════╝</p>
-        </div>
-        <br>
-        <div id="con" class="text">
-
-            <div id="content" class="noselect">
-                <p id="about" class="button" onclick="accordion('one');">[About]</p>
-                <div id="one" class="w3-hide">
-                    <div class="text indent">
-                        <p id="1a"></p>
-                        <p id="1b"></p>
-                        <a id="1c" href="features.html"></a>
-                    </div>
-                </div>
-                
-                <p id="projects" class="button" onclick="accordion('two');">[Projects]</p>
-                <div id="two" class="w3-hide">
-                    <div class="text indent">
-                        <div style="height:15px;font-size:1px;">&nbsp;</div>
-                        <a id="2a" class="text" href="clock.html" style="padding-right:300px; padding-left:10px"></a><br>
-                        <div style="height:15px;font-size:1px;">&nbsp;</div>
-                        <a id="2b" href="leetcodes.html" style="padding-right:312px; padding-left:10px"></a><br>
-                        <div style="height:15px;font-size:1px;">&nbsp;</div>
-                        <a id="2c" href="features.html" style="padding-right:275px; padding-left:10px"></a><br>
-                    </div>
-                </div>
-                
-                <p id="contact" class="button" onclick="accordion('three');">[Contact]</p>
-                <div id="three" class="w3-hide">
-                    <div class="text indent">
-                        <div style="height:10px;font-size:1px;">&nbsp;</div>
-                        <span id="3a"></span><span id="3b"></span><br>
-                        <div style="height:10px;font-size:1px;">&nbsp;</div>
-                        <a id="3c" href="https://www.linkedin.com/in/dong-hun-lee"></a>
-                    </div>
-                </div>
-                
-                <p id="resume" class="button" onclick="accordion('four');">[Resume]</p>
-                <div id="four" class="w3-hide">
-                    <div class="text indent">
-                        <p id="4a"></p>
-                        <p id="4b"></p>
-                        <p id="4c"></p>
-                    </div>
-                </div>
-
+        <div id="page">
+            <div id="textart" class="noselect">
+                <p>&nbsp;██████╗ ██████╗ &nbsp;█████╗ ██████╗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ██╗&nbsp;&nbsp;&nbsp;&nbsp;     ███████╗███████╗</p>
+                <p>&nbsp;██╔══██╗██╔══██╗██╔══██╗██╔══██╗   &nbsp;&nbsp;&nbsp; ██║     &nbsp;&nbsp;&nbsp;&nbsp;██╔════╝██╔════╝</p>
+                <p>&nbsp;██████╔╝██████╔╝███████║██║&nbsp;  ██║ &nbsp;&nbsp;&nbsp;   ██║     &nbsp;&nbsp;&nbsp;&nbsp;█████╗ &nbsp;█████╗ </p>
+                <p>&nbsp;██╔══██╗██╔══██╗██╔══██║██║&nbsp;  ██║ &nbsp;&nbsp;&nbsp;   ██║     &nbsp;&nbsp;&nbsp;&nbsp;██╔══╝ &nbsp;██╔══╝ </p>
+                <p>&nbsp;██████╔╝██║ &nbsp;██║██║&nbsp;  ██║██████╔╝  &nbsp;&nbsp;&nbsp;  ███████╗███████╗███████╗</p>
+                <p>&nbsp;╚═════╝ ╚═╝ &nbsp;╚═╝╚═╝&nbsp;  ╚═╝╚═════╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ╚══════╝╚══════╝╚══════╝</p>
             </div>
-            <div id="footer">
-                <span class="keyText">&nbsp;></span>
-                <span class="keyText" id="field"></span>
+            <div id="divider1">&nbsp;</div>
+            <div id="con" class="text">
+                <div id="content" class="noselect">
+                    <p id="about" class="button" onclick="accordion('one');">[About]</p>
+                    <div id="one" class="w3-hide">
+                        <ul class="list">
+                            <li><a id="1a" class="text indent"></a></li>
+                            <li><a id="1b" class="text indent"></a></li>
+                            <li><a id="1c" class="text indent active" href="features.html"></a></li>
+                        </ul>
+                    </div>
+                    
+                    <p id="projects" class="button" onclick="accordion('two');">[Projects]</p>
+                    <div id="two" class="w3-hide">
+                        <ul class="list">
+                            <li><a id="2a" class="text indent active" href="clock.html"></a></li>
+                            <li><a id="2b" class="text indent active" href="leetcodes.html"></a></li>
+                            <li><a id="2c" class="text indent active" href="features.html"></a></li>
+                        </ul>
+                    </div>
+                    
+                    <p id="contact" class="button" onclick="accordion('three');">[Contact]</p>
+                    <div id="three" class="w3-hide">
+                        <ul class="list">
+                            <li><span id="3a" class="text indent"></span><span id="3b" class="text"></span></li>
+                            <li><a id="3c" class="text indent active" href="https://www.linkedin.com/in/dong-hun-lee"></a></li>
+                        </ul>
+                    </div>
+                    
+                    <p id="resume" class="button" onclick="accordion('four');">[Resume]</p>
+                    <div id="four" class="w3-hide">
+                        <ul class="list">
+                            <li><a id="4a" class="text indent active"></a></li>
+                            <li><a id="4b" class="text indent active"></a></li>
+                            <li><a id="4c" class="text indent active"></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div id="footer" class="terminal">
+                    <span>&nbsp;></span>
+                    <span id="field"></span>
+                </div>
             </div>
         </div>
     </body>
-</html> 
+</html>
