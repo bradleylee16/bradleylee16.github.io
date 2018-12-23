@@ -114,14 +114,15 @@ function getCookie(cname) {
 
 function historyPush(str) {
     var list = getCookie("history");
+    var input = str.replace(/&nbsp;/g, "#");
     if (list == "") {
-        setCookie("history",str);
+        setCookie("history",input);
     } else {
         list = list.split(',');
         if (list.length == 20) {
             list.shift()
         }
-        list.push(str);
+        list.push(input);
         setCookie("history",list.toString());
     }
     setCookie("historyIndex", getCookie("history").split(',').length-1);
@@ -132,7 +133,8 @@ function displayUp() {
     var history = getCookie("history").split(',');
     var historyIndex = Number(getCookie("historyIndex"));
     if (historyIndex >= 0) {
-        document.getElementById("field").innerHTML = history[historyIndex];
+        var output = history[historyIndex].replace(/#/g,"&nbsp;");
+        document.getElementById("field").innerHTML = output;
         setCookie("historyIndex", historyIndex-1);
     } else {
         document.getElementById("field").style.color="#00E600";
@@ -154,7 +156,8 @@ function displayDown() {
             document.getElementById("field").innerHTML = "";
             setCookie("historyIndex", history.length-1);
         } else {
-            document.getElementById("field").innerHTML = history[historyIndex];
+            var output = history[historyIndex].replace(/#/g,"&nbsp;");
+            document.getElementById("field").innerHTML = output;
             setCookie("historyIndex", historyIndex+1);
         }
         console.log("history: [" + getCookie("history") + "] " + "historyIndex: " + getCookie("historyIndex"));
@@ -332,12 +335,11 @@ function reset(){
 }
 
 function borders(on) {
-    console.log(on);
     if (on == "1") {
         $('#page').css("border" , "2px solid green");
         $('#divider1').css("border" , "1px solid yellow");
         $('#textart').css("border" , "1px solid blue");
-        $('#footer').css("border" , "2px solid green");
+        $('#footer').css("border" , "2px solid red");
     } else if (on == "0") {
         $('#page').css("border" , "none");
         $('#divider1').css("border" , "none");
