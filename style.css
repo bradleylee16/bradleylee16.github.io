@@ -1,4 +1,4 @@
-    
+       
 body{
     background-color:#051e08;
     margin:0;
@@ -74,9 +74,10 @@ a {
 
 #page {
     margin: left;
-    width: 100%;
+    width: 72%;
     border: none;
     max-width: 1000px;
+    min-width: 0px;
 }
 
 #footer{
@@ -90,14 +91,6 @@ a {
     border: none;
 }
 
-#about{padding-right:300px;}
-
-#projects{padding-right:323px;}
-
-#contact{padding-right:342px;}
-
-#resume{padding-right:341px;}
-
 #divider1{
     font-size:.01vw; line-height:2vw;
     border: none;
@@ -107,7 +100,7 @@ a {
     color:#00FF00;
     font-family: 'Courier New', Courier, monospace;
     line-height:50%;
-    margin: auto;
+    /*margin: auto;*/
     font-size: 1.7vw;
     padding-left: 1%;
     padding-right: 1%;
@@ -115,7 +108,6 @@ a {
 }
 
 #field{
-    
     font-family: Monospace;
 }
 
@@ -164,5 +156,32 @@ a {
     }
     .terminal{
         font-size: 25px;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    #textart {
+       font-size: 9px;
+    }
+    #page {
+        width: 350px;
+    }
+    .button {
+        font-size: 18px;
+        line-height: 20px;
+        margin: 3px;
+        padding-left: 3px;
+    }
+    .text {
+        font-size: 10px;
+    }
+    .indent {
+        margin-left: 10px;
+        margin-top: 3px;
+        padding-top: 0px;
+        line-height: 4px;
+    }
+    .terminal{
+        font-size: 13px;
     }
   }
