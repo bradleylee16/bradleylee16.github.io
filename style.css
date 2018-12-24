@@ -7,10 +7,9 @@ body{
 
 .list {
     list-style-type: none;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 2vw;
-    margin: 0;
+    padding-left: 5.5vw;
+    text-indent: -5.5vw;
+    margin-left: 4vw;
 }
 
 .text{
@@ -33,12 +32,6 @@ body{
     cursor: default;
 }
 
-.footer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
 .noselect {
     -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -59,41 +52,50 @@ a {
     background-color:#00FF00;
 }
 
-.indent {
-    margin-left: 2vw;
-    margin-top: .5vw;
-    padding-top: .1vw;
-    line-height: .8vw;
-}
-
 .terminal{
-    font-size: 2.5vw;
+    font-size: 3.5vw;
     color:#00FF00;
     font-family: Monospace;
 }
 
 #page {
     margin: left;
-    width: 72%;
+    width: 100%;
     border: none;
     max-width: 1000px;
     min-width: 0px;
 }
 
+#content {
+    border: none;
+}
+
 #footer{
-    position: absolute;
-    bottom: 0;
+    /*position: absolute;
+    bottom: 0;*/
     height: 5vw;
-    padding-bottom: 50px;
-    padding-top: 5vw;
+    /*padding-bottom: 10vw;
+    padding-top: 5vw;*/
     min-height: 25px;
     clear:both;
     border: none;
 }
 
 #divider1{
-    font-size:.01vw; line-height:2vw;
+    font-size:.01vw; 
+    line-height:2vw;
     border: none;
+}
+
+#divider2{
+    font-size:.01vw; 
+    line-height:20vw;
+    border:none;
+}
+
+#interface {
+    border:none;
+    height:20vw;
 }
 
 #textart{
@@ -117,8 +119,8 @@ a {
     right: -10px;
     display: inline-block;
     background-color: #00FF00;
-    width: 1vw;
-    height: 2vw;
+    width: 1.3vw;
+    height: 2.5vw;
     -webkit-animation: blink 1s step-end infinite;
     animation: blink 1s step-end infinite;
 }
@@ -139,6 +141,13 @@ a {
     #textart {
        font-size: 17px;
     }
+    #divider2{
+        line-height:200px;
+    }
+    #field::after {
+        width: 13px;
+        height: 25px;
+    }
     .button {
         font-size: 35px;
         line-height: 40px;
@@ -148,23 +157,29 @@ a {
     .text {
         font-size: 20px;
     }
-    .indent {
-        margin-left: 20px;
-        margin-top: 5px;
-        padding-top: 1px;
-        line-height: 8px;
-    }
     .terminal{
-        font-size: 25px;
+        font-size: 35px;
+    }
+    .list{
+        margin-left:40px;
+        padding-left: 55px;
+        text-indent: -55px;
+    }
+    #interface {
+        height:200px;
     }
   }
 
   @media screen and (max-width: 500px) {
     #textart {
-       font-size: 9px;
+        font-size: 8px;
     }
-    #page {
-        width: 350px;
+    #divider2{
+        line-height:100px;
+    }
+    #field::after {
+        width: 7px;
+        height: 13px;
     }
     .button {
         font-size: 18px;
@@ -175,13 +190,16 @@ a {
     .text {
         font-size: 10px;
     }
-    .indent {
-        margin-left: 10px;
-        margin-top: 3px;
-        padding-top: 0px;
-        line-height: 4px;
-    }
     .terminal{
-        font-size: 13px;
+        font-size: 18px;
     }
+    .list{
+        margin-left:20px;
+        padding-left: 20px;
+        text-indent: -12px;
+    }
+    #interface {
+        height:100px;
+    }
+    
   }
