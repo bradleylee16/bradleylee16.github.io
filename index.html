@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Welcome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/8/89/Antu_x-terminal-emulator.svg">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" type="text/css" href="style.css">
@@ -21,48 +22,47 @@
                 <p>&nbsp;╚═════╝ ╚═╝ &nbsp;╚═╝╚═╝&nbsp;  ╚═╝╚═════╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ╚══════╝╚══════╝╚══════╝</p>
             </div>
             <div id="divider1">&nbsp;</div>
-            <div id="con" class="text">
+            <div id="interface" class="text">
                 <div id="content" class="noselect">
                     <p id="about" class="button" onclick="accordion('one');">[About]</p>
                     <div id="one" class="w3-hide">
                         <ul class="list">
-                            <li><a id="1a" class="text indent"></a></li>
-                            <li><a id="1b" class="text indent"></a></li>
-                            <li><a id="1c" class="text indent active" href="features.html"></a></li>
+                            <li><a id="1a" class="text"></a></li>
+                            <li><a id="1b" class="text"></a></li>
+                            <li><a id="1c" class="text active" href="features.html"></a></li>
                         </ul>
                     </div>
                     
                     <p id="projects" class="button" onclick="accordion('two');">[Projects]</p>
                     <div id="two" class="w3-hide">
                         <ul class="list">
-                            <li><a id="2a" class="text indent active" href="clock.html"></a></li>
-                            <li><a id="2b" class="text indent active" href="leetcodes.html"></a></li>
-                            <li><a id="2c" class="text indent active" href="features.html"></a></li>
+                            <li><a id="2a" class="text active" href="clock.html"></a></li>
+                            <li><a id="2b" class="text active" href="leetcodes.html"></a></li>
+                            <li><a id="2c" class="text active" href="features.html"></a></li>
                         </ul>
                     </div>
                     
                     <p id="contact" class="button" onclick="accordion('three');">[Contact]</p>
                     <div id="three" class="w3-hide">
                         <ul class="list">
-                            <li><span id="3a" class="text indent"></span><span id="3b" class="text"></span></li>
-                            <li><a id="3c" class="text indent active" href="https://www.linkedin.com/in/dong-hun-lee"></a></li>
+                            <li><span id="3a" class="text"></span><span id="3b" class="text"></span></li>
+                            <li><a id="3c" class="text active" href="https://www.linkedin.com/in/dong-hun-lee"></a></li>
                         </ul>
                     </div>
                     
                     <p id="resume" class="button" onclick="accordion('four');">[Resume]</p>
                     <div id="four" class="w3-hide">
                         <ul class="list">
-                            <li><a id="4a" class="text indent active"></a></li>
-                            <li><a id="4b" class="text indent active"></a></li>
-                            <li><a id="4c" class="text indent active"></a></li>
+                            <li><a id="4a" class="text active"></a></li>
+                            <li><a id="4b" class="text active"></a></li>
+                            <li><a id="4c" class="text active"></a></li>
                         </ul>
                     </div>
-
                 </div>
-                <div id="footer" class="terminal">
-                    <span>&nbsp;></span>
-                    <span id="field"></span>
-                </div>
+            </div>
+            <div id="divider2" class="noselect">&nbsp;</div>
+            <div id="footer" class="terminal">
+                <span>&nbsp;></span><span id="field"></span>
             </div>
         </div>
     </body>
