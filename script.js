@@ -1,13 +1,7 @@
-var i = 0;
-var speed = 25;
-var timeouts = [];
 var allowedChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
                     "p","q","r","s","t","u","v","w","x","y","z","A","B","C","D",
                     "E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S",
                     "T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"];
-var visited = [false, false, false, false];
-var entered;
-var noRetype = true;
 
 var dict1 = {
     "1a": "> Brad Lee is from New Jersey. He made this website",
@@ -32,6 +26,13 @@ var dict4 = {
     "4b": "> experience",
     "4c": "> courseload"
 }
+
+var i = 0;
+var speed = 25;
+var timeouts = [];
+var visited = [false, false, false, false];
+var entered;
+var noRetype = true;
 
 var bulletList = [dict1, dict2, dict3, dict4];
 
@@ -336,14 +337,18 @@ function reset(){
 
 function borders(on) {
     if (on == "1") {
-        $('#page').css("border" , "2px solid green");
-        $('#divider1').css("border" , "1px solid yellow");
-        $('#textart').css("border" , "1px solid blue");
-        $('#footer').css("border" , "2px solid red");
+        $('#page').css("border", "3px solid green");
+        $('#divider1').css("border", "1px solid yellow");
+        $('#divider2').css("border", "1px solid yellow");
+        $('#textart').css("border", "1px solid blue");
+        $('#footer').css("border", "1px solid red");
+        $('#interface').css("border", "1px solid white");
     } else if (on == "0") {
-        $('#page').css("border" , "none");
-        $('#divider1').css("border" , "none");
-        $('#textart').css("border" , "none");
-        $('#footer').css("border" , "none");
+        $('#page').css("border", "none");
+        $('#divider1').css("border", "none");
+        $('#divider2').css("border", "none");
+        $('#textart').css("border", "none");
+        $('#footer').css("border", "none");
+        $('#interface').css("border", "none");
     }
 }
