@@ -7,9 +7,11 @@ body{
 
 .list {
     list-style-type: none;
-    padding-left: 5.5vw;
-    text-indent: -5.5vw;
-    margin-left: 4vw;
+    padding-left: 2.0vw;
+    text-indent: -2.0vw;
+    margin-left: 3vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
 }
 
 .text{
@@ -19,6 +21,7 @@ body{
 }
 
 .button {
+    widows: 100%;
     font-size: 3.5vw;
     line-height: 4vw;
     margin: .5vw;
@@ -45,6 +48,12 @@ a {
     font-size: 20px;
     line-height: 10px;
     text-decoration: none;
+    padding-left: 1%;
+    padding-right: 4%;
+}
+
+.active{
+    width:100%;
 }
 
 .active:hover {
@@ -66,16 +75,14 @@ a {
     min-width: 0px;
 }
 
-#content {
-    border: none;
-}
+#content {border: none;}
+#one {border: none;}
+#two {border: none;}
+#three {border: none;}
+#four {border: none;}
 
 #footer{
-    /*position: absolute;
-    bottom: 0;*/
     height: 5vw;
-    /*padding-bottom: 10vw;
-    padding-top: 5vw;*/
     min-height: 25px;
     clear:both;
     border: none;
@@ -89,13 +96,13 @@ a {
 
 #divider2{
     font-size:.01vw; 
-    line-height:20vw;
+    line-height:10vw;
     border:none;
 }
 
 #interface {
     border:none;
-    height:20vw;
+    height:30vw;
 }
 
 #textart{
@@ -142,7 +149,7 @@ a {
        font-size: 17px;
     }
     #divider2{
-        line-height:200px;
+        line-height:100px;
     }
     #field::after {
         width: 13px;
@@ -161,12 +168,14 @@ a {
         font-size: 35px;
     }
     .list{
-        margin-left:40px;
-        padding-left: 55px;
-        text-indent: -55px;
+        margin-left:30px;
+        padding-left: 40px;
+        text-indent: -40px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     #interface {
-        height:200px;
+        height:300px;
     }
   }
 
@@ -175,7 +184,7 @@ a {
         font-size: 8px;
     }
     #divider2{
-        line-height:100px;
+        line-height:50px;
     }
     #field::after {
         width: 7px;
@@ -194,12 +203,14 @@ a {
         font-size: 18px;
     }
     .list{
-        margin-left:20px;
+        margin-left:15px;
         padding-left: 20px;
-        text-indent: -12px;
+        text-indent: -20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     #interface {
-        height:100px;
+        height:150px;
     }
     
   }
