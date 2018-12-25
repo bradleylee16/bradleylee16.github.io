@@ -208,7 +208,12 @@ function instaComplete() {
     clearTimeouts();
     for (var i = 0; i < bulletList.length; i++) {
         for (var key in bulletList[i]) {
-            document.getElementById(key).innerHTML = bulletList[i][key];
+            if (document.getElementById(key).innerHTML != "") {
+                for (var id in bulletList[i]) {
+                    document.getElementById(id).innerHTML = bulletList[i][id];
+                }
+                return;
+            }
         }
     }
 }
@@ -343,6 +348,10 @@ function borders(on) {
         $('#textart').css("border", "1px solid blue");
         $('#footer').css("border", "1px solid red");
         $('#interface').css("border", "1px solid white");
+        $('#one').css("border", "1px solid blue");
+        $('#two').css("border", "1px solid blue");
+        $('#three').css("border", "1px solid blue");
+        $('#four').css("border", "1px solid blue");
     } else if (on == "0") {
         $('#page').css("border", "none");
         $('#divider1').css("border", "none");
@@ -350,5 +359,9 @@ function borders(on) {
         $('#textart').css("border", "none");
         $('#footer').css("border", "none");
         $('#interface').css("border", "none");
+        $('#one').css("border", "none");
+        $('#two').css("border", "none");
+        $('#three').css("border", "none");
+        $('#four').css("border", "none");
     }
 }
