@@ -100,6 +100,24 @@ a {
     border:none;
 }
 
+
+#dummy {
+    background-color: #051e08;
+    /*background-color:purple;*/
+    color: #051e08;
+    width: 100%;
+    height: 20vw;
+    border:2px solid green;
+    outline: none;
+    position: absolute;
+    bottom:0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none;
+}
+
 #interface {
     border:none;
     height:30vw;
