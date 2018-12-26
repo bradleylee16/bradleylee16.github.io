@@ -39,6 +39,12 @@ var bulletList = [dict1, dict2, dict3, dict4];
 setCookie("history", "");
 setCookie("historyIndex",-1);
 
+function startup() {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        document.getElementById("dummy").setAttribute("class","noselect");
+    }
+}
+
 document.onkeydown = function (evt) {
     if ("key" in evt) {
         if (evt.key == "Backspace") {
@@ -49,45 +55,53 @@ document.onkeydown = function (evt) {
             }
         } else if (evt.key == "Enter") {
             entered = document.getElementById("field").innerHTML;
-            if (entered != "") {
-                historyPush(entered.toString());
-            } else {
-                instaComplete();
-            }
-            document.getElementById("field").innerHTML = "";
-            if (entered == "about" || entered == "About") {
-                accordion("one");
-            } else if (entered == "projects" || entered == "Projects") {
-                accordion("two");
-            } else if (entered == "contact" || entered == "Contact") {
-                accordion("three");
-            } else if (entered == "resume" || entered == "Resume") {
-                accordion("four");
-            } else if (entered == "swap") {
-                swap();
-            } else if (entered == "reset") {
-                reset();
-            } else if (entered == "info") {
-                window.location.href = "features.html";
-            } else if (entered == "border1") {
-                borders("1");
-            } else if (entered == "border0") {
-                borders("0");
-            } else if (entered == "history") {
-                console.log(history.toString());
-            }
+            parse(entered);
+            
         } else if (evt.key == "ArrowUp") {
             displayUp();
         } else if (evt.key == "ArrowDown") {
             displayDown();
         } else if (evt.key == "`") {
-            console.log(entered);
+            
         } else if (evt.keyCode == 32) {
             document.getElementById("field").innerHTML += "&nbsp;";
         } else if (allowedChars.includes(evt.key)) {
             document.getElementById("field").innerHTML += evt.key;
         }
     }
+}
+
+function parse(input) {
+    console.log("entered: " + input);
+    if (input == "") {
+        instaComplete();
+    } else if (input.match(/^(&nbsp;)*[A-Za-z0-9]+(&nbsp;)*[A-Za-z0-9]*(&nbsp;)*$/)) {
+        historyPush(input.toString());
+        input = input.replace(/(&nbsp;)+/g," ");
+        var args = input.trim().split(/\s+/g);
+        console.log("args: [" + args.toString() + "]");
+        if (args[0] == "about" || args[0] == "About") {
+            accordion("one");
+        } else if (args[0] == "projects" || args[0] == "Projects") {
+            accordion("two");
+        } else if (args[0] == "contact" || args[0] == "Contact") {
+            accordion("three");
+        } else if (args[0] == "resume" || args[0] == "Resume") {
+            accordion("four");
+        } else if (args[0] == "swap") {
+            swap();
+        } else if (args[0] == "reset") {
+            reset();
+        } else if (args[0] == "info") {
+            window.location.href = "features.html";
+        } else if (args[0] == "border") {
+            if (args[1] == "0" || args[1] == "1")
+                borders(args[1]);
+        } else if (args[0] == "history") {
+            console.log(history.toString());
+        }
+    }
+    document.getElementById("field").innerHTML = "";
 }
 
 function setCookie(cname,cvalue,exdays) {
@@ -345,6 +359,7 @@ function borders(on) {
         $('#page').css("border", "3px solid green");
         $('#divider1').css("border", "1px solid yellow");
         $('#divider2').css("border", "1px solid yellow");
+        $('dummmy').css("background-color", "purple");
         $('#textart').css("border", "1px solid blue");
         $('#footer').css("border", "1px solid red");
         $('#interface').css("border", "1px solid white");
@@ -356,6 +371,7 @@ function borders(on) {
         $('#page').css("border", "none");
         $('#divider1').css("border", "none");
         $('#divider2').css("border", "none");
+        $('#dummy').css("background-color", "#051e08");
         $('#textart').css("border", "none");
         $('#footer').css("border", "none");
         $('#interface').css("border", "none");
