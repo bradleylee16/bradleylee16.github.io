@@ -9,6 +9,9 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="script.js"></script>
+        <script type="text/javascript">
+            window.onload = startup();
+        </script>
     </head>
     
     <body>
@@ -60,10 +63,11 @@
                     </div>
                 </div>
             </div>
-            <div id="divider2" class="noselect">&nbsp;</div>
+            <div id="divider2" class="noselect">&nbsp;
+            </div>
             <div id="footer" class="terminal">
                 <span>&nbsp;></span><span id="field"></span>
-            </div>
         </div>
+            <textarea id="dummy" type="text" class="w3-hide noselect" spellcheck="false"></textarea>
     </body>
 </html>
