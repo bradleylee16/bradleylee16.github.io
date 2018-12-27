@@ -1,4 +1,4 @@
-  
+       
 body{
     background-color:#051e08;
     margin:0;
@@ -106,11 +106,10 @@ a {
     /*background-color:purple;*/
     color: #051e08;
     width: 100%;
-    height: 20vw;
-    border:2px solid green;
+    height: 1vw;
+    border:none;
     outline: none;
-    position: absolute;
-    bottom:0;
+    cursor: default;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
