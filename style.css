@@ -83,10 +83,10 @@ a {
 
 #footer{
     height: 5vw;
-    min-height: 25px;
     clear:both;
     border: none;
 }
+
 
 #divider1{
     font-size:.01vw; 
@@ -194,6 +194,9 @@ a {
     #interface {
         height:300px;
     }
+    #footer {
+        height:50px;
+    }
   }
 
   @media screen and (max-width: 500px) {
@@ -228,6 +231,9 @@ a {
     }
     #interface {
         height:150px;
+    }
+    #footer {
+        height:25px;
     }
     
   }
