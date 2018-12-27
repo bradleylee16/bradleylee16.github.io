@@ -22,9 +22,9 @@ var dict3 = {
 }
 
 var dict4 = {
-    "4a": "> education",
-    "4b": "> experience",
-    "4c": "> courseload"
+    "4a": "> [Online] Version",
+    "4b": "> [PDF] Version",
+    //"4c": "> courseload"
 }
 
 var i = 0;
@@ -32,18 +32,12 @@ var speed = 25;
 var timeouts = [];
 var visited = [false, false, false, false];
 var entered;
-var noRetype = true;
-
 var bulletList = [dict1, dict2, dict3, dict4];
+
+var retype = false;
 
 setCookie("history", "");
 setCookie("historyIndex",-1);
-
-function startup() {
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        document.getElementById("dummy").setAttribute("class","noselect");
-    }
-}
 
 document.onkeydown = function (evt) {
     if ("key" in evt) {
@@ -63,16 +57,16 @@ document.onkeydown = function (evt) {
             displayDown();
         } else if (evt.key == "`") {
             
-        } else if (evt.keyCode == 32) {
+        } else if (evt.keyCode == 32 && document.getElementById("field").innerHTML.length <= 28) {
             document.getElementById("field").innerHTML += "&nbsp;";
-        } else if (allowedChars.includes(evt.key)) {
+        } else if (allowedChars.includes(evt.key) && document.getElementById("field").innerHTML.length <= 28) {
             document.getElementById("field").innerHTML += evt.key;
         }
     }
 }
 
 function parse(input) {
-    console.log("entered: " + input);
+    //console.log("entered: " + input);
     if (input == "") {
         instaComplete();
     } else if (input.match(/^(&nbsp;)*[A-Za-z0-9]+(&nbsp;)*[A-Za-z0-9]*(&nbsp;)*$/)) {
@@ -88,17 +82,36 @@ function parse(input) {
             accordion("three");
         } else if (args[0] == "resume" || args[0] == "Resume") {
             accordion("four");
-        } else if (args[0] == "swap") {
-            swap();
+        } else if (args[0] == "retype") {
+            retyp(args[1]);
         } else if (args[0] == "reset") {
             reset();
-        } else if (args[0] == "info") {
-            window.location.href = "features.html";
         } else if (args[0] == "border") {
-            if (args[1] == "0" || args[1] == "1")
-                borders(args[1]);
+            if (args[1] == "0" || args[1] == "1") {
+                border(args[1]);
+            }
         } else if (args[0] == "history") {
             console.log(history.toString());
+        } else if (args[0] == "print") {
+            print(args[1]);
+        } else if (args[0] == "info") {
+            if (document.getElementById("one").getAttribute("class") != "w3-hide")
+                document.getElementById("1c").click();
+        } else if (args[0]+args[1] == "textclock" || args[0] == "textclock") {
+            if (document.getElementById("two").getAttribute("class") != "w3-hide")
+                document.getElementById("2a").click();
+        } else if (args[0] == "leetcodes" || args[0] == "Leetcodes") {
+            if (document.getElementById("two").getAttribute("class") != "w3-hide")
+                document.getElementById("2b").click();
+        } else if (args[0] == "linkedin") {
+            if (document.getElementById("three").getAttribute("class") != "w3-hide")
+                document.getElementById("3c").click();
+        } else if (args[0] == "online") {
+            if (document.getElementById("four").getAttribute("class") != "w3-hide")
+                document.getElementById("4a").click();
+        } else if (args[0] == "pdf") {
+            if (document.getElementById("four").getAttribute("class") != "w3-hide")
+                document.getElementById("4b").click();
         }
     }
     document.getElementById("field").innerHTML = "";
@@ -124,7 +137,7 @@ function getCookie(cname) {
             return c.substring(name.length, c.length);
         }
     }
-    return "";
+    return null;
 }
 
 function historyPush(str) {
@@ -141,7 +154,7 @@ function historyPush(str) {
         setCookie("history",list.toString());
     }
     setCookie("historyIndex", getCookie("history").split(',').length-1);
-    console.log("cookie: [" + getCookie("history") + "] historyIndex: " + getCookie("historyIndex"));
+    //console.log("cookie: [" + getCookie("history") + "] historyIndex: " + getCookie("historyIndex"));
 }
 
 function displayUp() {
@@ -157,7 +170,7 @@ function displayUp() {
             document.getElementById("field").style.color="#00FF00";
         }, 50));
     }
-    console.log("history: [" + getCookie("history") + "] " + "historyIndex: " + getCookie("historyIndex"));
+    //console.log("history: [" + getCookie("history") + "] " + "historyIndex: " + getCookie("historyIndex"));
 }
 
 function displayDown() {
@@ -175,7 +188,7 @@ function displayDown() {
             document.getElementById("field").innerHTML = output;
             setCookie("historyIndex", historyIndex+1);
         }
-        console.log("history: [" + getCookie("history") + "] " + "historyIndex: " + getCookie("historyIndex"));
+        //console.log("history: [" + getCookie("history") + "] " + "historyIndex: " + getCookie("historyIndex"));
     }
 }
 
@@ -214,7 +227,7 @@ function hideOthers(id) {
     if (id == "four" || id == "all") {
         document.getElementById("4a").innerHTML = "";
         document.getElementById("4b").innerHTML = "";
-        document.getElementById("4c").innerHTML = "";
+        //document.getElementById("4c").innerHTML = "";
     }
 }
 
@@ -241,7 +254,7 @@ function accordion(id) {
             document.getElementById("two").setAttribute("class", "w3-hide");
             document.getElementById("three").setAttribute("class", "w3-hide");
             document.getElementById("four").setAttribute("class", "w3-hide");
-            if (!visited[0] || !noRetype) {
+            if (!visited[0] || retype) {
                 hideOthers("one");
                 i = 0
                 type("1a", dict1["1a"], speed);
@@ -253,13 +266,13 @@ function accordion(id) {
                     i = 0;
                     type("1c", dict1["1c"], speed);
                 }, 3100));
-            } else if (noRetype) {
+            } else if (!retype) {
                 clearTimeouts();
                 document.getElementById("1a").innerHTML = dict1["1a"];
                 document.getElementById("1b").innerHTML = dict1["1b"];
                 document.getElementById("1c").innerHTML = dict1["1c"];
             }
-            if (noRetype) {
+            if (!retype) {
                 visited[0] = true;
             }
         }
@@ -267,7 +280,7 @@ function accordion(id) {
             document.getElementById("one").setAttribute("class", "w3-hide");
             document.getElementById("three").setAttribute("class", "w3-hide");
             document.getElementById("four").setAttribute("class", "w3-hide");
-            if (!visited[1] || !noRetype) {
+            if (!visited[1] || retype) {
                 hideOthers("two");
                 i = 0;
                 type("2a", dict2["2a"], speed);
@@ -279,13 +292,13 @@ function accordion(id) {
                     i = 0;
                     type("2c", dict2["2c"], speed);
                 }, 1000));
-            } else if (noRetype) {
+            } else if (!retype) {
                 clearTimeouts();
                 document.getElementById("2a").innerHTML = dict2["2a"];
                 document.getElementById("2b").innerHTML = dict2["2b"];
                 document.getElementById("2c").innerHTML = dict2["2c"];
             }
-            if (noRetype) {
+            if (!retype) {
                 visited[1] = true;
             }
         }
@@ -293,7 +306,7 @@ function accordion(id) {
             document.getElementById("two").setAttribute("class", "w3-hide");
             document.getElementById("one").setAttribute("class", "w3-hide");
             document.getElementById("four").setAttribute("class", "w3-hide");
-            if (!visited[2] || !noRetype) {
+            if (!visited[2] || retype) {
                 hideOthers("three");
                 i = 0;
                 type("3a", dict3["3a"], speed);
@@ -305,13 +318,13 @@ function accordion(id) {
                     i = 0;
                     type("3c", dict3["3c"], speed);
                 }, 800));
-            } else if (noRetype) {
+            } else if (!retype) {
                 clearTimeouts();
                 document.getElementById("3a").innerHTML = dict3["3a"];
                 document.getElementById("3b").innerHTML = dict3["3b"];
                 document.getElementById("3c").innerHTML = dict3["3c"];
             }
-            if (noRetype) {
+            if (!retype) {
                 visited[2] = true;
             }
         }
@@ -319,25 +332,25 @@ function accordion(id) {
             document.getElementById("two").setAttribute("class", "w3-hide");
             document.getElementById("one").setAttribute("class", "w3-hide");
             document.getElementById("three").setAttribute("class", "w3-hide");
-            if (!visited[3] || !noRetype) {
+            if (!visited[3] || retype) {
                 hideOthers("four");
                 i = 0;
                 type("4a", dict4["4a"], speed);
                 timeouts.push(setTimeout(function(){
                     i = 0;
                     type("4b", dict4["4b"], speed);
-                }, 400));
-                timeouts.push(setTimeout(function(){
+                }, 510));
+                /*timeouts.push(setTimeout(function(){
                     i = 0;
                     type("4c", dict4["4c"], speed);
-                }, 800));
-            } else if (noRetype) {
+                }, 800));*/
+            } else if (!retype) {
                 clearTimeouts();
                 document.getElementById("4a").innerHTML = dict4["4a"];
                 document.getElementById("4b").innerHTML = dict4["4b"];
-                document.getElementById("4c").innerHTML = dict4["4c"];
+                //document.getElementById("4c").innerHTML = dict4["4c"];
             }
-            if (noRetype) {
+            if (!retype) {
                 visited[3] = true;
             }
         }
@@ -346,8 +359,11 @@ function accordion(id) {
     }
 }
 
-function swap(){
-    noRetype = !noRetype;
+function retyp(setting){
+    if (setting == "1")
+        retype = true;
+    if (setting == "0")
+        retype = false;
 }
 
 function reset(){
@@ -358,7 +374,11 @@ function selectBox(){
     document.getElementById("dummy").select();
 }
 
-function borders(on) {
+function print(arg) {
+
+}
+
+function border(on) {
     if (on == "1") {
         $('#page').css("border", "3px solid green");
         $('#divider1').css("border", "1px solid yellow");
@@ -371,7 +391,7 @@ function borders(on) {
         $('#two').css("border", "1px solid blue");
         $('#three').css("border", "1px solid blue");
         $('#four').css("border", "1px solid blue");
-    } else if (on == "0") {
+    } else if ("on" == 0) {
         $('#page').css("border", "none");
         $('#divider1').css("border", "none");
         $('#divider2').css("border", "none");
