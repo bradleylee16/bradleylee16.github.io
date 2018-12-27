@@ -354,12 +354,16 @@ function reset(){
     document.location.reload();
 }
 
+function selectBox(){
+    document.getElementById("dummy").select();
+}
+
 function borders(on) {
     if (on == "1") {
         $('#page').css("border", "3px solid green");
         $('#divider1').css("border", "1px solid yellow");
         $('#divider2').css("border", "1px solid yellow");
-        $('dummmy').css("background-color", "purple");
+        $('#dummmy').css("border", "1px solid purple");
         $('#textart').css("border", "1px solid blue");
         $('#footer').css("border", "1px solid red");
         $('#interface').css("border", "1px solid white");
