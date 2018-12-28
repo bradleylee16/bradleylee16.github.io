@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/8/89/Antu_x-terminal-emulator.svg">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="resume.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+        <script src="resume.js"></script>
+        <script type="text/javascript">
+            
+        </script>
+    </head>
+    <body onload="resumeType(texts,30)">
+        <div id="main" class="text">
+            <div id="header">
+                <a class="nav" id="back" href="index.html">[Back]</a>
+                <span class="header-text">Resumé</span>
+                <a class="nav" id="pdf" href="Resume.pdf" target="_blank">[PDF]</a>
+            </div>
+            <hr class="hr">
+            <div id="categories">
+                <div id="education" class="category noselect">
+                    <span id="r1a" class="category-text"></span>
+                    <div class="resume-text-area">
+                        <ul class=resume-list>
+                            <li id="r1b"></li>
+                            <li id="r1c"></li>
+                            <li id="r1d"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="skills" class="category noselect">
+                    <span id="r2a" class="category-text"></span>
+                    <div class="resume-text-area">
+                            <ul id="list2" class="resume-list">
+                                <li id="r2b"></li>
+                                <li id="r2c"></li>
+                                <li id="r2d"></li>
+                                <li id="r2e"></li>
+                                <li id="r2f"></li>
+                                <li id="r2g"></li>
+                            </ul>
+                        </div>
+                </div>
+                <div id="projects" class="category noselect">
+                    <span id="r3a" class="category-text"></span>
+                    <div class="resume-text-area">
+                        <ul class="resume-list">
+                            <li><span id="r3b"></span>
+                                <ul class="sub-list-text">
+                                    <li id="r3c"></li>
+                                    <li id="r3d"></li>
+                                    <li id="r3e"></li>
+                                </ul>
+                            </li>
+                            <li><span id="r3f"></span>
+                                <ul class="sub-list-text">
+                                    <li id="r3g"></li>
+                                    <li id="r3h"></li>
+                                    <li id="r3i"></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="experience" class="category noselect">
+                    <span id="r4a" class="category-text"></span>
+                    <div class="resume-text-area">
+                        <ul class="resume-list">
+                            <li><span id="r4b"></span>
+                                <span id="r4c" class="exp-dur-text"></span>
+                                <ul class="experience-text">
+                                    <li id="r4d"></li>
+                                    <li id="r4e"></li>
+                                    <li id="r4f"></li>
+                                    <li id="r4g"></li>
+                                </ul>
+                            </li>
+                            <li><span id="r4h"></span>
+                                <span id="r4i" class="exp-dur-text"></span>
+                                <ul class="experience-text">
+                                    <li id="r4j"></li>
+                                    <li id="r4k"></li>
+                                    <li id="r4l"></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer" class="terminal" onclick="selectBox()">
+            <span class="noselect">&nbsp;></span><span id="field"></span>
+        </div>
+        <textarea id="dummy" type="text" class="noselect" spellcheck="false"></textarea>
+    </body>
+</html>

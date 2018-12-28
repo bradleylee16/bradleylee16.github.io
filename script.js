@@ -2,30 +2,21 @@ var allowedChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
                     "p","q","r","s","t","u","v","w","x","y","z","A","B","C","D",
                     "E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S",
                     "T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"];
-
 var dict1 = {
     "1a": "> Brad Lee is from New Jersey. He made this website",
     "1b": "> Brad studies computer science at the University of Maryland",
-    "1c": "> Click or type info to find out more about this website"
-}
-
+    "1c": "> Click or type info to find out more about this website"}
 var dict2 = {
     "2a": "> [Text Clock]",
     "2b": "> [Leetcodes]",
-    "2c": "> Coming Soon!"
-}
-
+    "2c": "> Coming Soon!"}
 var dict3 = {
     "3a": "> bradleylee16",
     "3b": "@gmail.com",
-    "3c": "> [Linkedin]"
-}
-
+    "3c": "> [Linkedin]"}
 var dict4 = {
     "4a": "> [Online] Version",
-    "4b": "> [PDF] Version",
-    //"4c": "> courseload"
-}
+    "4b": "> [PDF] Version",}
 
 var i = 0;
 var speed = 25;
@@ -56,10 +47,10 @@ document.onkeydown = function (evt) {
         } else if (evt.key == "ArrowDown") {
             displayDown();
         } else if (evt.key == "`") {
-            
-        } else if (evt.keyCode == 32 && document.getElementById("field").innerHTML.length <= 28) {
+            console.log(document.getElementById("field").innerHTML.replace(/&nbsp;/g,"#").length);
+        } else if (evt.keyCode == 32 && document.getElementById("field").innerHTML.replace(/&nbsp;/g,"#").length <= 28) {
             document.getElementById("field").innerHTML += "&nbsp;";
-        } else if (allowedChars.includes(evt.key) && document.getElementById("field").innerHTML.length <= 28) {
+        } else if (allowedChars.includes(evt.key) && document.getElementById("field").innerHTML.replace(/&nbsp;/g,"#").length <= 28) {
             document.getElementById("field").innerHTML += evt.key;
         }
     }
@@ -110,8 +101,12 @@ function parse(input) {
             if (document.getElementById("four").getAttribute("class") != "w3-hide")
                 document.getElementById("4a").click();
         } else if (args[0] == "pdf") {
-            if (document.getElementById("four").getAttribute("class") != "w3-hide")
+            if (window.location.pathname.search("resume.html"))
+                document.getElementById("pdf").click();
+            else if (document.getElementById("four").getAttribute("class") != "w3-hide")
                 document.getElementById("4b").click();
+        } else if (args[0] == "back" && window.location.pathname.search("resume.html")) {
+            document.getElementById("back").click();
         }
     }
     document.getElementById("field").innerHTML = "";
@@ -391,7 +386,13 @@ function border(on) {
         $('#two').css("border", "1px solid blue");
         $('#three').css("border", "1px solid blue");
         $('#four').css("border", "1px solid blue");
-    } else if ("on" == 0) {
+        //resume page
+        $('.resume-text-area').css("border", "1px solid red");
+        $('#main').css("border", "2px solid green");
+        $('#header').css("border", "1px solid coral");
+        $('#categories').css("border", "1px solid blue");
+        $('.category').css("border", "1px solid skyblue");
+    } else if (on == "0") {
         $('#page').css("border", "none");
         $('#divider1').css("border", "none");
         $('#divider2').css("border", "none");
@@ -403,5 +404,11 @@ function border(on) {
         $('#two').css("border", "none");
         $('#three').css("border", "none");
         $('#four').css("border", "none");
+        //resume page
+        $('.resume-text-area').css("border", "none");
+        $('#main').css("border","none");
+        $('#header').css("border","none");
+        $('#categories').css("border","none");
+        $('.category').css("border","none");
     }
 }

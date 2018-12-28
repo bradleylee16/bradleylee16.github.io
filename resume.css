@@ -1,0 +1,123 @@
+
+.sub-list-text {
+    font-size: 1.5vw;
+}
+
+.header-text {
+    margin:0;
+    padding:0;
+    font-size: 4vw;
+    text-align: center;
+}
+
+.hr {
+    margin:0;
+    padding:0;
+    border-color:#00FF00;
+}
+
+.category {
+    font-size: 3vw;
+}
+
+.category-text {
+    padding-left: 8vw;
+    font-size: 2.5vw;
+}
+
+.resume-text-area {
+    margin: 0;
+    padding: 0;
+    font-size: 1.7vw;
+    border: none;
+    text-align: left;
+}
+
+.resume-list {
+    margin:0;
+    padding:0;
+    margin-left: 2.5vw;
+    margin-top: .5vw;
+    margin-bottom: .5vw;
+}
+
+.experience-text{
+    font-size: 1.3vw;
+    padding-left: 1.5vw;
+    margin: .5vw;
+    padding-top:0vw;
+}
+
+.exp-dur-text {
+    font-size: 1.5vw;
+}
+
+.nav {
+    height: 4vw;
+}
+
+.nav:hover {
+    color: #051e08;
+    background-color:#00FF00;
+}
+/*
+.category:hover {
+    color: #051e08;
+    background-color: #00FF00;
+}
+*/
+#main {
+    border: none;
+    height: 57vw;
+    margin: 0;
+}
+
+#header {
+    border: none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+
+#categories {
+    border: none;
+    width: 100%;
+}
+
+#education{
+    float: left;
+    width: 50%;
+}
+
+#skills {
+    float:right;
+    width:50%;
+}
+
+#projects {
+    float: left;
+    width: 50%;
+}
+
+#experience {
+    float:right;
+    width: 50%;
+}
+
+#list2 {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+
+#back {
+    padding-top: 1.2vw;
+    float:left;
+    font-size: 3vw;
+}
+
+#pdf {
+    padding-top: 1.2vw;
+    float:right;
+    font-size: 3vw;
+}
