@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/8/89/Antu_x-terminal-emulator.svg">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="info.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+        <script src="info.js"></script>
+        <script src="resume.js"></script>
+    </head>
+    <body onload="startup()">
+        <div id="infoPage" class="text noselect">
+            <div>
+                <div id="infoTitle">
+                    <p>██╗███╗   &nbsp;&nbsp;██╗███████╗ ██████╗</p>
+                    <p>██║████╗  &nbsp;██║██╔════╝██╔═══██╗</p>
+                    <p>██║██╔██╗ ██║█████╗  &nbsp;██║&nbsp;&nbsp;   ██║</p>
+                    <p>██║██║╚██╗██║██╔══╝  &nbsp;██║&nbsp;&nbsp;   ██║</p>
+                    <p>██║██║ ╚████║██║&nbsp;&nbsp;&nbsp;&nbsp;     ╚██████╔╝</p>
+                    <p>╚═╝╚═╝  ╚═══╝╚═╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ╚═════╝ </p>
+                </div>
+                <a id="infoBack" class="nav" href="index.html">[Back]</a>
+                <ul class="bulletless mainText">
+                    <li><p id="siteNav" class="tab" onclick="expandTab('list1',listIDs)">[Site Navigation]</p>
+                        <div id="list1" class="w3-hide">
+                            <ul class="bulletless subText">
+                                <li id="i1a"></li>
+                                <li id="i1b"></li>
+                                <li id="i1c"></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><p id="otherFeat" class="tab" onclick="expandTab('list2',listIDs)">[Other Features]</p>
+                        <div id="list2" class="w3-hide">
+                            <ul class="bulletless subText">
+                                <li id="i2a"></li>
+                                <li id="i2b"></li>
+                                <li id="i2c"></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><p id="commands" class="tab" onclick="expandTab('list3',listIDs)">[Commands]</p>
+                        <div id="list3" class="w3-hide">
+                            <ul class="bulletless subText">
+                                <li id="i3a"></span></li>
+                                    <ul id="i3b" class="smallText bulletless"></ul>
+                                <li id="i3c"></li>
+                                    <ul id="i3d" class="smallText bulletless"></ul>
+                                <li id="i3e"></li>
+                                    <ul id="i3f" class="smallText bulletless"></ul>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="footer" class="terminal" onclick="selectBox()">
+            <span class="noselect">&nbsp;></span><span id="field"></span>
+        </div>
+        </div>
+        <textarea id="dummy" type="text" class="noselect" spellcheck="false"></textarea>
+    </body>
+</html>

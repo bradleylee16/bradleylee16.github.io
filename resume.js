@@ -93,3 +93,10 @@ function resumeType(map, speed) {
         timeouts.push(setTimeout(function(){resumeType(map, speed)}, speed));
     }
 }
+
+function instaCompleteResume() {
+    clearTimeouts();
+    for (var id in texts) {
+        document.getElementById(id).innerHTML = texts[id];
+    }
+}

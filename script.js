@@ -5,7 +5,7 @@ var allowedChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
 var dict1 = {
     "1a": "> Brad Lee is from New Jersey. He made this website",
     "1b": "> Brad studies computer science at the University of Maryland",
-    "1c": "> Click or type info to find out more about this website"}
+    "1c": "> Click or type [Info] to find out more about this website"}
 var dict2 = {
     "2a": "> [Text Clock]",
     "2b": "> [Leetcodes]",
@@ -27,8 +27,16 @@ var bulletList = [dict1, dict2, dict3, dict4];
 
 var retype = false;
 
-setCookie("history", "");
-setCookie("historyIndex",-1);
+
+
+function startup() {
+    if (getCookie("history") == null) {
+        setCookie("history", "",365);
+        setCookie("historyIndex",-1,365);
+    } else {
+
+    }
+}
 
 document.onkeydown = function (evt) {
     if ("key" in evt) {
@@ -41,75 +49,95 @@ document.onkeydown = function (evt) {
         } else if (evt.key == "Enter") {
             entered = document.getElementById("field").innerHTML;
             parse(entered);
-            
         } else if (evt.key == "ArrowUp") {
             displayUp();
         } else if (evt.key == "ArrowDown") {
             displayDown();
-        } else if (evt.key == "`") {
-            console.log(document.getElementById("field").innerHTML.replace(/&nbsp;/g,"#").length);
         } else if (evt.keyCode == 32 && document.getElementById("field").innerHTML.replace(/&nbsp;/g,"#").length <= 28) {
             document.getElementById("field").innerHTML += "&nbsp;";
         } else if (allowedChars.includes(evt.key) && document.getElementById("field").innerHTML.replace(/&nbsp;/g,"#").length <= 28) {
             document.getElementById("field").innerHTML += evt.key;
+        } else if (evt.key == "`") {
+            //DEBUG KEY
+            listCookies();
         }
     }
 }
 
 function parse(input) {
     //console.log("entered: " + input);
+    document.getElementById("field").innerHTML = "";
     if (input == "") {
-        instaComplete();
+        if (window.location.pathname.search("resume.html") != -1) {
+            instaCompleteResume();
+        } else if (window.location.pathname.search("info.html") != -1){
+            instaComplete(listIDs);
+        } else {
+            instaComplete();
+        }
     } else if (input.match(/^(&nbsp;)*[A-Za-z0-9]+(&nbsp;)*[A-Za-z0-9]*(&nbsp;)*$/)) {
         historyPush(input.toString());
         input = input.replace(/(&nbsp;)+/g," ");
         var args = input.trim().split(/\s+/g);
         console.log("args: [" + args.toString() + "]");
-        if (args[0] == "about" || args[0] == "About") {
-            accordion("one");
-        } else if (args[0] == "projects" || args[0] == "Projects") {
-            accordion("two");
-        } else if (args[0] == "contact" || args[0] == "Contact") {
-            accordion("three");
-        } else if (args[0] == "resume" || args[0] == "Resume") {
-            accordion("four");
-        } else if (args[0] == "retype") {
+        if (window.location.pathname.search("resume.html") != -1) {
+            //COMMANDS EXCLUSIVE TO INFO.HTML
+            if (args[0] == "pdf") {
+                document.getElementById("pdf").click();
+            } else if (args[0] == "back") {
+                document.getElementById("back").click();
+            }
+        } else if (window.location.pathname.search("info.html") != -1) {
+            //COMMANDS SPECIFIC TO INFO.HTML
+            if (args[0] == "site" && args[1] == "navigation") {
+                document.getElementById("siteNav").click();
+            } else if (args[0] == "other" && args[1] == "features") {
+                document.getElementById("otherFeat").click();
+            } else if (args[0] == "commands") {
+                document.getElementById("commands").click();
+            } else if (args[0] == "back") {
+                document.getElementById("infoBack").click();
+            }
+        } else {
+            //COMMANDS SPECIFIC TO INDEX.HTML
+            if (args[0] == "about" || args[0] == "About") {
+                accordion("one");
+            } else if (args[0] == "projects" || args[0] == "Projects") {
+                accordion("two");
+            } else if (args[0] == "contact" || args[0] == "Contact") {
+                accordion("three");
+            } else if (args[0] == "resume" || args[0] == "Resume") {
+                accordion("four");
+            } else if (args[0] == "info") {
+                if (document.getElementById("one").getAttribute("class") != "w3-hide")
+                    document.getElementById("1c").click();
+            } else if (args[0]+args[1] == "textclock" || args[0] == "textclock") {
+                if (document.getElementById("two").getAttribute("class") != "w3-hide")
+                    document.getElementById("2a").click();
+            } else if (args[0] == "leetcodes" || args[0] == "Leetcodes") {
+                if (document.getElementById("two").getAttribute("class") != "w3-hide")
+                    document.getElementById("2b").click();
+            } else if (args[0] == "linkedin") {
+                if (document.getElementById("three").getAttribute("class") != "w3-hide")
+                    document.getElementById("3c").click();
+            } else if (args[0] == "online") {
+                if (document.getElementById("four").getAttribute("class") != "w3-hide")
+                    document.getElementById("4a").click();
+            } else if (args[0] == "pdf" && document.getElementById("four").getAttribute("class") != "w3-hide") {
+                    document.getElementById("4b").click();
+            }
+        }//COMMANDS THAT APPLY TO ALL PAGES
+        if (args[0] == "retype") {
             retyp(args[1]);
         } else if (args[0] == "reset") {
             reset();
         } else if (args[0] == "border") {
-            if (args[1] == "0" || args[1] == "1") {
+            if (args[1] == "0" || args[1] == "1")
                 border(args[1]);
-            }
         } else if (args[0] == "history") {
-            console.log(history.toString());
-        } else if (args[0] == "print") {
-            print(args[1]);
-        } else if (args[0] == "info") {
-            if (document.getElementById("one").getAttribute("class") != "w3-hide")
-                document.getElementById("1c").click();
-        } else if (args[0]+args[1] == "textclock" || args[0] == "textclock") {
-            if (document.getElementById("two").getAttribute("class") != "w3-hide")
-                document.getElementById("2a").click();
-        } else if (args[0] == "leetcodes" || args[0] == "Leetcodes") {
-            if (document.getElementById("two").getAttribute("class") != "w3-hide")
-                document.getElementById("2b").click();
-        } else if (args[0] == "linkedin") {
-            if (document.getElementById("three").getAttribute("class") != "w3-hide")
-                document.getElementById("3c").click();
-        } else if (args[0] == "online") {
-            if (document.getElementById("four").getAttribute("class") != "w3-hide")
-                document.getElementById("4a").click();
-        } else if (args[0] == "pdf") {
-            if (window.location.pathname.search("resume.html"))
-                document.getElementById("pdf").click();
-            else if (document.getElementById("four").getAttribute("class") != "w3-hide")
-                document.getElementById("4b").click();
-        } else if (args[0] == "back" && window.location.pathname.search("resume.html")) {
-            document.getElementById("back").click();
+            history();
         }
     }
-    document.getElementById("field").innerHTML = "";
 }
 
 function setCookie(cname,cvalue,exdays) {
@@ -371,6 +399,28 @@ function selectBox(){
 
 function print(arg) {
 
+}
+
+function history() {
+    str = getCookie("history");
+    str = str.split(",");
+    console.log(str);
+    display = "";
+    var num = 1;
+    for (var c = str.length-1; c >= 0; c--) {
+        display += (num + ": " + str[c] + "\n");
+        num++;
+    }
+    console.log(display);
+}
+
+function listCookies() {
+    var theCookies = document.cookie.split(';');
+    var aString = '';
+    for (var i = 1 ; i <= theCookies.length; i++) {
+        aString += i + ' ' + theCookies[i-1].trim() + "\n";
+    }
+    console.log(aString);
 }
 
 function border(on) {
