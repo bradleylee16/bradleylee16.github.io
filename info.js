@@ -32,11 +32,13 @@ var list3 = {
     ,"i3f":"Prints in-site terminal history to JS terminal"
 }
 var listIDs = {"list1":list1,"list2":list2,"list3":list3};
+var idClicked = {"list1":false,"list2":false,"list3":false};
 var i = 0;
+var totalTime = 0;
 
 //map -> list elem id to text map
 //speed -> speed of typing
-function contentType(map, speed) {
+function contentType2(map, speed) {
     len = longestString(map);
     if (i < len) {
         for (var key in map) {
@@ -45,7 +47,37 @@ function contentType(map, speed) {
             }
         }
         i++;
-        timeouts.push(setTimeout(function(){resumeType(map, speed)}, speed));
+        timeouts.push(setTimeout(function(){contentType(map, speed)}, speed));
+    }
+}
+
+function type(elem, txt, speed) {
+    if (i < txt.length) {
+        document.getElementById(elem).innerHTML += txt.charAt(i);
+        i++;
+        timeouts.push(setTimeout(function(){type(elem, txt, speed)}, speed));
+    }
+}
+
+function contentType(map, speed) {
+    totalTime = 0;
+    lst = [];
+    for (id in map)
+        lst.push(id);
+    contentTypeAux(map, lst, speed);
+}
+
+function contentTypeAux(map, lst, speed) {
+    if (lst.length > 1) {
+        var text = map[lst[0]]
+        type(lst[0],text,speed)
+        lst.shift();
+        timeouts.push(setTimeout(function(){
+            i = 0;
+            contentTypeAux(map, lst, speed);
+        }, text.length * speed + speed * 6));
+    } else {
+        type(lst[0], map[lst[0]], speed);
     }
 }
 //id -> div you want to expand
@@ -61,7 +93,13 @@ function expandTab(id, idList) {
         hideOthers(id, idList);
         i = 0;
         document.getElementById(id).setAttribute("class","w3-show");
-        contentType(idList[id], 25);
+        if (!retype && idClicked[id]) {
+            instaComplete(idList);
+        } else {
+            idClicked[id] = true;
+            contentType(idList[id], 25);
+        }
+        
     }
 }
 //id -> div id you want to exempt from expansion

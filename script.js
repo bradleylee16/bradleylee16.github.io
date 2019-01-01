@@ -79,62 +79,64 @@ function parse(input) {
         historyPush(input.toString());
         input = input.replace(/(&nbsp;)+/g," ");
         var args = input.trim().split(/\s+/g);
+        for (var x = 0; x < args.length; x++){args[x] = args[x].toUpperCase();}
         console.log("args: [" + args.toString() + "]");
         if (window.location.pathname.search("resume.html") != -1) {
             //COMMANDS EXCLUSIVE TO INFO.HTML
-            if (args[0] == "pdf") {
+            if (args[0] == "PDF") {
                 document.getElementById("pdf").click();
-            } else if (args[0] == "back") {
+            } else if (args[0] == "BACK") {
                 document.getElementById("back").click();
             }
         } else if (window.location.pathname.search("info.html") != -1) {
             //COMMANDS SPECIFIC TO INFO.HTML
-            if (args[0] == "site" && args[1] == "navigation") {
+            if (args[0] == "SITE" && args[1] == "NAVIGATION") {
                 document.getElementById("siteNav").click();
-            } else if (args[0] == "other" && args[1] == "features") {
+            } else if (args[0] == "OTHER" && args[1] == "FEATURES") {
                 document.getElementById("otherFeat").click();
-            } else if (args[0] == "commands") {
+            } else if (args[0] == "COMMANDS") {
                 document.getElementById("commands").click();
-            } else if (args[0] == "back") {
+            } else if (args[0] == "BACK") {
                 document.getElementById("infoBack").click();
             }
         } else {
             //COMMANDS SPECIFIC TO INDEX.HTML
-            if (args[0] == "about" || args[0] == "About") {
+            if (args[0] == "ABOUT") {
                 accordion("one");
-            } else if (args[0] == "projects" || args[0] == "Projects") {
+            } else if (args[0] == "PROJECTS") {
                 accordion("two");
-            } else if (args[0] == "contact" || args[0] == "Contact") {
+            } else if (args[0] == "CONTACT") {
                 accordion("three");
-            } else if (args[0] == "resume" || args[0] == "Resume") {
+            } else if (args[0] == "RESUME") {
                 accordion("four");
-            } else if (args[0] == "info") {
+            } else if (args[0] == "INFO") {
                 if (document.getElementById("one").getAttribute("class") != "w3-hide")
                     document.getElementById("1c").click();
-            } else if (args[0]+args[1] == "textclock" || args[0] == "textclock") {
+            } else if (args[0]+args[1] == "TEXTCLOCK") {
                 if (document.getElementById("two").getAttribute("class") != "w3-hide")
                     document.getElementById("2a").click();
-            } else if (args[0] == "leetcodes" || args[0] == "Leetcodes") {
+            } else if (args[0] == "LEETCODES") {
                 if (document.getElementById("two").getAttribute("class") != "w3-hide")
                     document.getElementById("2b").click();
-            } else if (args[0] == "linkedin") {
+            } else if (args[0] == "LINKEDIN") {
                 if (document.getElementById("three").getAttribute("class") != "w3-hide")
                     document.getElementById("3c").click();
-            } else if (args[0] == "online") {
+            } else if (args[0] == "ONLINE") {
                 if (document.getElementById("four").getAttribute("class") != "w3-hide")
                     document.getElementById("4a").click();
-            } else if (args[0] == "pdf" && document.getElementById("four").getAttribute("class") != "w3-hide") {
+            } else if (args[0] == "PDF") {
+                if (document.getElementById("four").getAttribute("class") != "w3-hide")
                     document.getElementById("4b").click();
             }
         }//COMMANDS THAT APPLY TO ALL PAGES
-        if (args[0] == "retype") {
+        if (args[0] == "RETYPE") {
             retyp(args[1]);
-        } else if (args[0] == "reset") {
+        } else if (args[0] == "RESET") {
             reset();
-        } else if (args[0] == "border") {
+        } else if (args[0] == "BORDER") {
             if (args[1] == "0" || args[1] == "1")
                 border(args[1]);
-        } else if (args[0] == "history") {
+        } else if (args[0] == "HISTORY") {
             history();
         }
     }
