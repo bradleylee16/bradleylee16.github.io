@@ -19,7 +19,7 @@ a{
 
 .page{
     border: none;
-    height: 57vw;
+    height: 60vw;
 }
 
 .text{
@@ -57,31 +57,19 @@ a{
 }
 
 .subText{
-    font-size: 1.7vw;
+    font-size: 2vw;
     padding-left: 3vw;
 }
 
 .smallText{
-    font-size: 1.5vw;
-    border: none;
-}
-
-.nav {
     font-size: 2vw;
-    height: 2vw;
-    padding-top:0vw;
-    padding-left:2vw;
-}
-
-.nav:hover {
-    color: #051e08;
-    background-color:#00FF00;
+    border: none;
 }
 
 .tab {
     padding: 0vw;
     margin: 0vw;
-    font-size: 2.5vw;
+    font-size: 3vw;
     border: none;
 }
 
@@ -122,7 +110,7 @@ a{
 /*MAIN SPECIFIC CSS*/
 
 #mainTitle{
-    font-size: 1.5vw;
+    font-size: 1.7vw;
 }
 
 /*TERMINAL SPECIFIC CSS*/
@@ -181,8 +169,74 @@ a{
 /*BORDERS CSS*/
 
 @media screen and (min-width: 1000px) {
-
+    .text{
+        font-size: 20px;
+    }
+    .page{
+        height: 600px;
+    }
+    .mainText{
+        font-size: 20px;
+    }
+    .subText{
+        font-size: 20px;
+    }
+    .smallText{
+        font-size: 20px;
+    }
+    .tab {
+        font-size: 30px;
+    }
+    #infoTitle{
+        font-size: 13px;
+    }
+    #resumeTitle{
+        font-size: 13px;
+    }
+    #mainTitle{
+        font-size: 17px;
+    }
+    .terminal{
+        font-size: 35px;
+    }
+    #field::after {
+        width: 13px;
+        height: 25px;
+    }
 }
 @media screen and (max-width: 500px) {
-
+    .text{
+        font-size: 10px;
+    }
+    .page{
+        height: 300px;
+    }
+    .mainText{
+        font-size: 10px;
+    }
+    .subText{
+        font-size: 10px;
+    }
+    .smallText{
+        font-size: 10px;
+    }
+    .tab {
+        font-size: 15px;
+    }
+    #infoTitle{
+        font-size: 7px;
+    }
+    #resumeTitle{
+        font-size: 7px;
+    }
+    #mainTitle{
+        font-size: 9px;
+    }
+    .terminal{
+        font-size: 18px;
+    }
+    #field::after {
+        width: 7px;
+        height: 13px;
+    }
 }

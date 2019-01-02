@@ -17,6 +17,7 @@ var borders = {
 
 
 function startup() {
+    document.getElementById("dummy").select();
     if (getCookie("history") == null) {
         setCookie("history", "",365);
         setCookie("historyIndex",-1,365);
@@ -272,4 +273,4 @@ function border(on) {
             }
         }
     }
-} 
+}
