@@ -1,11 +1,60 @@
+/*INFO SPECIFIC CSS*/
+/*INFO SPECIFIC CSS*/
 #infoPage{
     border: 2px solid green;
     height: 57vw;
 }
 
 #infoTitle{
+    font-size: 1.3vw;
+}
+
+#iHeader{
+    border: 2px solid maroon;
+}
+
+
+/*RESUME SPECIFIC CSS*/
+/*RESUME SPECIFIC CSS*/
+#resumeTitle{
     line-height:20%;
     font-size: 1.3vw;
+    border: 1px solid cyan;
+    padding-right: 1vw;
+}
+
+#resumeLeft{
+    border: 2px solid purple;
+    float:left;
+    width: 35%;
+}
+
+#resumeRight{
+    border: 2px solid blue;
+    float:right;
+    width: 65%;
+    height: 100%;
+}
+
+/*INDEX SPECIFIC CSS*/
+/*INDEX SPECIFIC CSS*/
+
+#mHeader{
+    border: 2px solid maroon;
+    text-align: left;
+}
+
+#mainTitle{
+    font-size: 1.5vw;
+}
+
+/*CLASSES*/
+/*CLASSES*/
+
+.titleText{
+    line-height:20%;
+    border: 1px solid cyan;
+    padding-right: 1vw;
     padding-left: 2vw;
 }
 
@@ -25,6 +74,7 @@
 
 .smallText{
     font-size: 1.5vw;
+    border: 1px solid greenyellow;
 }
 
 .nav {
@@ -43,7 +93,9 @@
     padding: 0vw;
     margin: 0vw;
     font-size: 2.5vw;
+    border: 1px solid pink;
 }
+
 
 .tab:hover {
     color: #051e08;

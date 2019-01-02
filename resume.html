@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/8/89/Antu_x-terminal-emulator.svg">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="info.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+        <script src="info.js"></script>
+        <script src="resume.js"></script>
+    </head>
+    <body onload="startup()">
+        <div id="infoPage" class="text noselect">
+            <div>
+                <div id="iHeader">
+                    <div id="resumeTitle" class="titleText">
+                        <p>██████╗ ███████╗███████╗██╗&nbsp;&nbsp;   ██╗███╗&nbsp;&nbsp;   ███╗███████╗</p>
+                        <p>██╔══██╗██╔════╝██╔════╝██║&nbsp;&nbsp;   ██║████╗ ████║██╔════╝</p>
+                        <p>██████╔╝█████╗&nbsp;  ███████╗██║&nbsp;&nbsp;   ██║██╔████╔██║█████╗   </p>
+                        <p>██╔══██╗██╔══╝  &nbsp;╚════██║██║&nbsp;&nbsp;   ██║██║╚██╔╝██║██╔══╝  </p>
+                        <p>██║&nbsp;  ██║███████╗███████║╚██████╔╝██║ ╚═╝ ██║███████╗</p>
+                        <p>╚═╝&nbsp;  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╚═╝╚══════╝</p>
+                    </div>
+                                                    
+
+                </div>
+                <div id="resumeLeft">
+                    <ul class="bulletless mainText">
+                        <li><p id="education" class="tab" onclick="expandTab('rList1',rListIDs)">[Education]</p></li>
+                        <li><p id="skills" class="tab" onclick="expandTab('rList2',rListIDs)">[Skills]</p></li>
+                        <li><p id="projects" class="tab" onclick="expandTab('rList3',rListIDs)">[Projects]</p></li>
+                        <li><p id="experience" class="tab" onclick="expandTab('rList4',rListIDs)">[Experience]</p></li>
+                        <li><p id="pdf" class="tab" onclick="document.location.href='resume.pdf';">[PDF Version]</p></li>
+                        <li><p id="resumeBack" class="tab" onclick="document.location.href='index.html';">[Back]</p></li>
+                    </ul>
+                </div>
+                <div id="resumeRight">
+                    <div id="rList1" class="w3-hide">
+                        <ul class="subText">
+                            <li><a id="r1b" class="smallText"></a></li>
+                            <li><a id="r1c" class="smallText"></a></li>
+                            <li><a id="r1d" class="smallText"></a></li>
+                        </ul>
+                    </div>
+                    <div id="rList2" class="w3-hide">
+                        <ul class="subText">
+                            <li><a id="r2b" class="smallText"></a></li>
+                            <li><a id="r2c" class="smallText"></a></li>
+                            <li><a id="r2d" class="smallText"></a></li>
+                            <li><a id="r2e" class="smallText"></a></li>
+                            <li><a id="r2f" class="smallText"></a></li>
+                            <li><a id="r2g" class="smallText"></a></li>
+                        </ul>
+                    </div>
+                    <div id="rList3" class="w3-hide">
+                        <ul class="subText">
+                            <li>&nbsp;<a id="r3b" class="smallText"></a></li>
+                            <ul class="smallText">
+                                <li><a id="r3c" class="smallText"></a></li>
+                                <li><a id="r3d" class="smallText"></a></li>
+                                <li><a id="r3e" class="smallText"></a></li>
+                            </ul>
+                            <li>&nbsp;<a id="r3f" class="smallText"></a></li>
+                            <ul class="smallText">
+                                <li><a id="r3g" class="smallText"></a></li>
+                                <li><a id="r3h" class="smallText"></a></li>
+                                <li><a id="r3i" class="smallText"></a></li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div id="rList4" class="w3-hide">
+                        <ul class="subText">
+                            <li>&nbsp;<a id="r4b" class="smallText"></a></li>
+                            <ul class="smallText">
+                                <li><a id="r4d" class="smallText"></a></li>
+                                <li><a id="r4e" class="smallText"></a></li>
+                                <li><a id="r4f" class="smallText"></a></li>
+                                <li><a id="r4g" class="smallText"></a></li>
+                            </ul>
+                            <li>&nbsp;<a id="r4h" class="smallText"></a></li>
+                            <ul class="subText">
+                                <li><a id="r4j" class="smallText"></a></li>
+                                <li><a id="r4k" class="smallText"></a></li>
+                                <li><a id="r4l" class="smallText"></a></li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer" class="terminal" onclick="selectBox()">
+            <span class="noselect">&nbsp;></span><span id="field"></span>
+        </div>
+        </div>
+        <textarea id="dummy" type="text" class="noselect" spellcheck="false"></textarea>
+    </body>
+</html>
+
+

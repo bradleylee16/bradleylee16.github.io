@@ -16,15 +16,16 @@
     <body onload="startup()">
         <div id="infoPage" class="text noselect">
             <div>
-                <div id="infoTitle">
-                    <p>██╗███╗   &nbsp;&nbsp;██╗███████╗ ██████╗</p>
-                    <p>██║████╗  &nbsp;██║██╔════╝██╔═══██╗</p>
-                    <p>██║██╔██╗ ██║█████╗  &nbsp;██║&nbsp;&nbsp;   ██║</p>
-                    <p>██║██║╚██╗██║██╔══╝  &nbsp;██║&nbsp;&nbsp;   ██║</p>
-                    <p>██║██║ ╚████║██║&nbsp;&nbsp;&nbsp;&nbsp;     ╚██████╔╝</p>
-                    <p>╚═╝╚═╝  ╚═══╝╚═╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ╚═════╝ </p>
+                <div id="iHeader">
+                    <div id="infoTitle" class="titleText">
+                        <p>██╗███╗   &nbsp;&nbsp;██╗███████╗ ██████╗</p>
+                        <p>██║████╗  &nbsp;██║██╔════╝██╔═══██╗</p>
+                        <p>██║██╔██╗ ██║█████╗  &nbsp;██║&nbsp;&nbsp;   ██║</p>
+                        <p>██║██║╚██╗██║██╔══╝  &nbsp;██║&nbsp;&nbsp;   ██║</p>
+                        <p>██║██║ ╚████║██║&nbsp;&nbsp;&nbsp;&nbsp;     ╚██████╔╝</p>
+                        <p>╚═╝╚═╝  ╚═══╝╚═╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ╚═════╝ </p>
+                    </div>
                 </div>
-                <a id="infoBack" class="nav" href="index.html">[Back]</a>
                 <ul class="bulletless mainText">
                     <li><p id="siteNav" class="tab" onclick="expandTab('list1',listIDs)">[Site Navigation]</p>
                         <div id="list1" class="w3-hide">
@@ -47,15 +48,16 @@
                     <li><p id="commands" class="tab" onclick="expandTab('list3',listIDs)">[Commands]</p>
                         <div id="list3" class="w3-hide">
                             <ul class="bulletless subText">
-                                <li><a id="i3a" class="smallText"></a></li>
-                                    <ul id="i3b" class="smallText bulletless">&nbsp;</ul>
-                                <li><a id="i3c" class="smallText">&nbsp;</a></li>
-                                    <ul id="i3d" class="smallText bulletless">&nbsp;</ul>
-                                <li><a id="i3e" class="smallText">&nbsp;</a></li>
-                                    <ul id="i3f" class="smallText bulletless">&nbsp;</ul>
+                                <li>&nbsp;<a id="i3a" class="smallText"></a></li>
+                                <span><ul id="i3b" class="smallText bulletless"></ul></span>
+                                <li>&nbsp;<a id="i3c" class="smallText"></a></li>
+                                <span><ul id="i3d" class="smallText bulletless"></ul></span>
+                                <li>&nbsp;<a id="i3e" class="smallText"></a></li>
+                                <span><ul id="i3f" class="smallText bulletless"></ul></span>
                             </ul>
                         </div>
                     </li>
+                    <li><p id="infoBack" class="tab" onclick="document.location.href='index.html';">[Back]</p></li>
                 </ul>
             </div>
         </div>

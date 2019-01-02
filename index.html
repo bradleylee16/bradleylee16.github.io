@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/8/89/Antu_x-terminal-emulator.svg">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="info.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+        <script src="info.js"></script>
+        <script src="resume.js"></script>
+    </head>
+    <body onload="startup()">
+        <div id="infoPage" class="text noselect">
+            <div>
+                <div id="mHeader">
+                    <div id="mainTitle" class="titleText">
+                        <p>██████╗ ██████╗ &nbsp;█████╗ ██████╗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ██╗&nbsp;&nbsp;&nbsp;&nbsp;     ███████╗███████╗</p>
+                        <p>██╔══██╗██╔══██╗██╔══██╗██╔══██╗   &nbsp;&nbsp;&nbsp; ██║     &nbsp;&nbsp;&nbsp;&nbsp;██╔════╝██╔════╝</p>
+                        <p>██████╔╝██████╔╝███████║██║&nbsp;  ██║ &nbsp;&nbsp;&nbsp;   ██║     &nbsp;&nbsp;&nbsp;&nbsp;█████╗ &nbsp;█████╗ </p>
+                        <p>██╔══██╗██╔══██╗██╔══██║██║&nbsp;  ██║ &nbsp;&nbsp;&nbsp;   ██║     &nbsp;&nbsp;&nbsp;&nbsp;██╔══╝ &nbsp;██╔══╝ </p>
+                        <p>██████╔╝██║ &nbsp;██║██║&nbsp;  ██║██████╔╝  &nbsp;&nbsp;&nbsp;  ███████╗███████╗███████╗</p>
+                        <p>╚═════╝ ╚═╝ &nbsp;╚═╝╚═╝&nbsp;  ╚═╝╚═════╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ╚══════╝╚══════╝╚══════╝</p>
+                    </div>
+                </div>
+                <ul class="bulletless mainText">
+                    <li><p id="about" class="tab" onclick="expandTab('mList1',mListIDs)">[About]</p>
+                        <div id="mList1" class="w3-hide">
+                            <ul class="bulletless subText">
+                                <li>&nbsp;<a id="m1a" class="smallText"></a></li>
+                                <li>&nbsp;<a id="m1b" class="smallText"></a></li>
+                                <li>&nbsp;<a id="m1c" class="smallText active" href="info.html"></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><p id="projects" class="tab" onclick="expandTab('mList2',mListIDs)">[Projects]</p>
+                        <div id="mList2" class="w3-hide">
+                            <ul class="bulletless subText">
+                                <li>&nbsp;<a id="m2a" class="smallText active" href="clock.html"></a></li>
+                                <li>&nbsp;<a id="m2b" class="smallText active"></a></li>
+                                <li>&nbsp;<a id="m2c" class="smallText"></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><p id="contact" class="tab" onclick="expandTab('mList3',mListIDs)">[Contact]</p>
+                        <div id="mList3" class="w3-hide">
+                            <ul class="bulletless subText">
+                                <li>&nbsp;<a id="m3a" class="smallText"></a></li>
+                                <li>&nbsp;<a id="m3b" class="smallText active" href="https://www.linkedin.com/in/dong-hun-lee"></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><p id="resume" class="tab" onclick="expandTab('mList4',mListIDs)">[Resume]</p>
+                        <div id="mList4" class="w3-hide">
+                            <ul class="bulletless subText">
+                                <li>&nbsp;<a id="m4a" class="smallText active" href="resume.html"></a></li>
+                                <li>&nbsp;<a id="m4b" class="smallText active" href="resume.pdf"></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="footer" class="terminal" onclick="selectBox()">
+            <span class="noselect">&nbsp;></span><span id="field"></span>
+        </div>
+        </div>
+        <textarea id="dummy" type="text" class="noselect" spellcheck="false"></textarea>
+    </body>
+</html>

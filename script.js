@@ -2,28 +2,10 @@ var allowedChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
                     "p","q","r","s","t","u","v","w","x","y","z","A","B","C","D",
                     "E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S",
                     "T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"];
-var dict1 = {
-    "1a": "> Brad Lee is from New Jersey. He made this website",
-    "1b": "> Brad studies computer science at the University of Maryland",
-    "1c": "> Click or type [Info] to find out more about this website"}
-var dict2 = {
-    "2a": "> [Text Clock]",
-    "2b": "> [Leetcodes]",
-    "2c": "> Coming Soon!"}
-var dict3 = {
-    "3a": "> bradleylee16",
-    "3b": "@gmail.com",
-    "3c": "> [Linkedin]"}
-var dict4 = {
-    "4a": "> [Online] Version",
-    "4b": "> [PDF] Version",}
 
-var i = 0;
-var speed = 25;
 var timeouts = [];
 var visited = [false, false, false, false];
 var entered;
-var bulletList = [dict1, dict2, dict3, dict4];
 
 var retype = false;
 
@@ -69,11 +51,11 @@ function parse(input) {
     document.getElementById("field").innerHTML = "";
     if (input == "") {
         if (window.location.pathname.search("resume.html") != -1) {
-            instaCompleteResume();
+            instaComplete(rListIDs);
         } else if (window.location.pathname.search("info.html") != -1){
             instaComplete(listIDs);
         } else {
-            instaComplete();
+            instaComplete(mListIDs);
         }
     } else if (input.match(/^(&nbsp;)*[A-Za-z0-9]+(&nbsp;)*[A-Za-z0-9]*(&nbsp;)*$/)) {
         historyPush(input.toString());
@@ -82,11 +64,19 @@ function parse(input) {
         for (var x = 0; x < args.length; x++){args[x] = args[x].toUpperCase();}
         console.log("args: [" + args.toString() + "]");
         if (window.location.pathname.search("resume.html") != -1) {
-            //COMMANDS EXCLUSIVE TO INFO.HTML
-            if (args[0] == "PDF") {
+            //COMMANDS EXCLUSIVE TO RESUME.HTML
+            if ((args[0] == "PDF" && args[1] == "VERSION") || args[0] == "PDF") {
                 document.getElementById("pdf").click();
             } else if (args[0] == "BACK") {
-                document.getElementById("back").click();
+                document.getElementById("resumeBack").click();
+            } else if (args[0] == "EDUCATION") {
+                document.getElementById("education").click();
+            } else if (args[0] == "SKILLS") {
+                document.getElementById("skills").click();
+            } else if (args[0] == "PROJECTS") {
+                document.getElementById("projects").click();
+            } else if (args[0] == "EXPERIENCE") {
+                document.getElementById("experience").click();
             }
         } else if (window.location.pathname.search("info.html") != -1) {
             //COMMANDS SPECIFIC TO INFO.HTML
@@ -102,31 +92,31 @@ function parse(input) {
         } else {
             //COMMANDS SPECIFIC TO INDEX.HTML
             if (args[0] == "ABOUT") {
-                accordion("one");
+                document.getElementById("about").click();
             } else if (args[0] == "PROJECTS") {
-                accordion("two");
+                document.getElementById("projects").click();
             } else if (args[0] == "CONTACT") {
-                accordion("three");
+                document.getElementById("contact").click();
             } else if (args[0] == "RESUME") {
-                accordion("four");
+                document.getElementById("resume").click();
             } else if (args[0] == "INFO") {
-                if (document.getElementById("one").getAttribute("class") != "w3-hide")
-                    document.getElementById("1c").click();
+                if (document.getElementById("mList1").getAttribute("class") != "w3-hide")
+                    document.getElementById("m1c").click();
             } else if (args[0]+args[1] == "TEXTCLOCK") {
-                if (document.getElementById("two").getAttribute("class") != "w3-hide")
-                    document.getElementById("2a").click();
+                if (document.getElementById("mList2").getAttribute("class") != "w3-hide")
+                    document.getElementById("m2a").click();
             } else if (args[0] == "LEETCODES") {
-                if (document.getElementById("two").getAttribute("class") != "w3-hide")
-                    document.getElementById("2b").click();
+                if (document.getElementById("mList2").getAttribute("class") != "w3-hide")
+                    document.getElementById("m2b").click();
             } else if (args[0] == "LINKEDIN") {
-                if (document.getElementById("three").getAttribute("class") != "w3-hide")
-                    document.getElementById("3c").click();
+                if (document.getElementById("mList3").getAttribute("class") != "w3-hide")
+                    document.getElementById("m3b").click();
             } else if (args[0] == "ONLINE") {
-                if (document.getElementById("four").getAttribute("class") != "w3-hide")
-                    document.getElementById("4a").click();
+                if (document.getElementById("mList4").getAttribute("class") != "w3-hide")
+                    document.getElementById("m4a").click();
             } else if (args[0] == "PDF") {
-                if (document.getElementById("four").getAttribute("class") != "w3-hide")
-                    document.getElementById("4b").click();
+                if (document.getElementById("mList4").getAttribute("class") != "w3-hide")
+                    document.getElementById("m4b").click();
             }
         }//COMMANDS THAT APPLY TO ALL PAGES
         if (args[0] == "RETYPE") {
@@ -214,14 +204,6 @@ function displayDown() {
             setCookie("historyIndex", historyIndex+1);
         }
         //console.log("history: [" + getCookie("history") + "] " + "historyIndex: " + getCookie("historyIndex"));
-    }
-}
-
-function type(elem, txt, speed) {
-    if (i < txt.length) {
-        document.getElementById(elem).innerHTML += txt.charAt(i);
-        i++;
-        timeouts.push(setTimeout(function(){type(elem, txt, speed)}, speed));
     }
 }
 
