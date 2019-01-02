@@ -128,11 +128,10 @@ var mList4 = {
 var mListIDs = {"mList1":mList1,"mList2":mList2,"mList3":mList3,"mList4":mList4};
 var mIdClicked = {"mList1":false,"mList2":false,"mList3":false,"mList4":false};
 
-
+var timeouts = [];
 var i = 0;
-
+//types every line in the map at once
 //map -> list elem id to text map
-//speed -> speed of typing
 function contentType2(map, speed) {
     len = longestString(map);
     if (i < len) {
@@ -145,7 +144,9 @@ function contentType2(map, speed) {
         timeouts.push(setTimeout(function(){contentType(map, speed)}, speed));
     }
 }
-
+//typing animation for a single line
+//elem -> .html file id of element being typed in
+//txt -> string to be typed
 function type(elem, txt, speed) {
     if (i < txt.length) {
         document.getElementById(elem).innerHTML += txt.charAt(i);
@@ -153,7 +154,8 @@ function type(elem, txt, speed) {
         timeouts.push(setTimeout(function(){type(elem, txt, speed)}, speed));
     }
 }
-
+//types each line in the map in sequence
+//map -> list elem id to text map
 function contentType(map, speed) {
     totalTime = 0;
     lst = [];
@@ -212,6 +214,7 @@ function hideOthers(id, idList) {
         }
     }
 }
+//Skips typing animation for any element that has w3-show class
 //listIDs -> map of tab ids to bullet text maps
 function instaComplete(idList) {
     clearTimeouts();
@@ -221,5 +224,11 @@ function instaComplete(idList) {
                 document.getElementById(text).innerHTML = idList[id][text];
             return;
         }
+    }
+}
+//Stops all timeouts
+function clearTimeouts() {
+    for (var i=0; i<timeouts.length; i++) {
+        clearTimeout(timeouts[i]);
     }
 }

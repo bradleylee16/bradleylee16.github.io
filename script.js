@@ -2,13 +2,18 @@ var allowedChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
                     "p","q","r","s","t","u","v","w","x","y","z","A","B","C","D",
                     "E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S",
                     "T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"];
-
-var timeouts = [];
-var visited = [false, false, false, false];
 var entered;
-
 var retype = false;
-
+var borders = {
+    ".page":"3px solid green"
+    ,".header":"2px solid maroon"
+    ,".smallText":"1px solid greenyellow"
+    ,".tab":"1px solid pink"
+    ,"#footer":"1px solid red"
+    //RESUME SPECIFIC BORDERS
+    ,"#resumeLeft":"2px solid purple"
+    ,"#resumeRight":"2px solid blue"
+}
 
 
 function startup() {
@@ -207,165 +212,6 @@ function displayDown() {
     }
 }
 
-function clearTimeouts() {
-    for (var i=0; i<timeouts.length; i++) {
-        clearTimeout(timeouts[i]);
-    }
-}
-
-function hideOthers(id) {
-    i = 0;
-    clearTimeouts();
-    if (id == "one"|| id == "all") {
-        document.getElementById("1a").innerHTML = "";
-        document.getElementById("1b").innerHTML = "";
-        document.getElementById("1c").innerHTML = "";
-    }
-    if (id == "two"|| id == "all") {
-        document.getElementById("2a").innerHTML = "";
-        document.getElementById("2b").innerHTML = "";
-        document.getElementById("2c").innerHTML = "";
-    }
-    if (id == "three"|| id == "all") {
-        document.getElementById("3a").innerHTML = "";
-        document.getElementById("3b").innerHTML = "";
-        document.getElementById("3c").innerHTML = "";
-    }
-    if (id == "four" || id == "all") {
-        document.getElementById("4a").innerHTML = "";
-        document.getElementById("4b").innerHTML = "";
-        //document.getElementById("4c").innerHTML = "";
-    }
-}
-
-function instaComplete() {
-    clearTimeouts();
-    for (var i = 0; i < bulletList.length; i++) {
-        for (var key in bulletList[i]) {
-            if (document.getElementById(key).innerHTML != "") {
-                for (var id in bulletList[i]) {
-                    document.getElementById(id).innerHTML = bulletList[i][id];
-                }
-                return;
-            }
-        }
-    }
-}
-
-function accordion(id) {
-    hideOthers("all");
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        if (id == "one") {
-            document.getElementById("two").setAttribute("class", "w3-hide");
-            document.getElementById("three").setAttribute("class", "w3-hide");
-            document.getElementById("four").setAttribute("class", "w3-hide");
-            if (!visited[0] || retype) {
-                hideOthers("one");
-                i = 0
-                type("1a", dict1["1a"], speed);
-                timeouts.push(setTimeout(function(){
-                    i = 0;
-                    type("1b", dict1["1b"], speed);
-                }, 1400));
-                timeouts.push(setTimeout(function(){
-                    i = 0;
-                    type("1c", dict1["1c"], speed);
-                }, 3100));
-            } else if (!retype) {
-                clearTimeouts();
-                document.getElementById("1a").innerHTML = dict1["1a"];
-                document.getElementById("1b").innerHTML = dict1["1b"];
-                document.getElementById("1c").innerHTML = dict1["1c"];
-            }
-            if (!retype) {
-                visited[0] = true;
-            }
-        }
-        if (id == "two") {
-            document.getElementById("one").setAttribute("class", "w3-hide");
-            document.getElementById("three").setAttribute("class", "w3-hide");
-            document.getElementById("four").setAttribute("class", "w3-hide");
-            if (!visited[1] || retype) {
-                hideOthers("two");
-                i = 0;
-                type("2a", dict2["2a"], speed);
-                timeouts.push(setTimeout(function(){
-                    i = 0;
-                    type("2b", dict2["2b"], speed);
-                }, 500));
-                timeouts.push(setTimeout(function(){
-                    i = 0;
-                    type("2c", dict2["2c"], speed);
-                }, 1000));
-            } else if (!retype) {
-                clearTimeouts();
-                document.getElementById("2a").innerHTML = dict2["2a"];
-                document.getElementById("2b").innerHTML = dict2["2b"];
-                document.getElementById("2c").innerHTML = dict2["2c"];
-            }
-            if (!retype) {
-                visited[1] = true;
-            }
-        }
-        if (id == "three") {
-            document.getElementById("two").setAttribute("class", "w3-hide");
-            document.getElementById("one").setAttribute("class", "w3-hide");
-            document.getElementById("four").setAttribute("class", "w3-hide");
-            if (!visited[2] || retype) {
-                hideOthers("three");
-                i = 0;
-                type("3a", dict3["3a"], speed);
-                timeouts.push(setTimeout(function(){
-                    i = 0;
-                    type("3b", dict3["3b"], speed);
-                }, 400));
-                timeouts.push(setTimeout(function(){
-                    i = 0;
-                    type("3c", dict3["3c"], speed);
-                }, 800));
-            } else if (!retype) {
-                clearTimeouts();
-                document.getElementById("3a").innerHTML = dict3["3a"];
-                document.getElementById("3b").innerHTML = dict3["3b"];
-                document.getElementById("3c").innerHTML = dict3["3c"];
-            }
-            if (!retype) {
-                visited[2] = true;
-            }
-        }
-        if (id == "four") {
-            document.getElementById("two").setAttribute("class", "w3-hide");
-            document.getElementById("one").setAttribute("class", "w3-hide");
-            document.getElementById("three").setAttribute("class", "w3-hide");
-            if (!visited[3] || retype) {
-                hideOthers("four");
-                i = 0;
-                type("4a", dict4["4a"], speed);
-                timeouts.push(setTimeout(function(){
-                    i = 0;
-                    type("4b", dict4["4b"], speed);
-                }, 510));
-                /*timeouts.push(setTimeout(function(){
-                    i = 0;
-                    type("4c", dict4["4c"], speed);
-                }, 800));*/
-            } else if (!retype) {
-                clearTimeouts();
-                document.getElementById("4a").innerHTML = dict4["4a"];
-                document.getElementById("4b").innerHTML = dict4["4b"];
-                //document.getElementById("4c").innerHTML = dict4["4c"];
-            }
-            if (!retype) {
-                visited[3] = true;
-            }
-        }
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-
 function retyp(setting){
     if (setting == "1")
         retype = true;
@@ -408,41 +254,22 @@ function listCookies() {
 }
 
 function border(on) {
-    if (on == "1") {
-        $('#page').css("border", "3px solid green");
-        $('#divider1').css("border", "1px solid yellow");
-        $('#divider2').css("border", "1px solid yellow");
-        $('#dummmy').css("border", "1px solid purple");
-        $('#textart').css("border", "1px solid blue");
-        $('#footer').css("border", "1px solid red");
-        $('#interface').css("border", "1px solid white");
-        $('#one').css("border", "1px solid blue");
-        $('#two').css("border", "1px solid blue");
-        $('#three').css("border", "1px solid blue");
-        $('#four').css("border", "1px solid blue");
-        //resume page
-        $('.resume-text-area').css("border", "1px solid red");
-        $('#main').css("border", "2px solid green");
-        $('#header').css("border", "1px solid coral");
-        $('#categories').css("border", "1px solid blue");
-        $('.category').css("border", "1px solid skyblue");
-    } else if (on == "0") {
-        $('#page').css("border", "none");
-        $('#divider1').css("border", "none");
-        $('#divider2').css("border", "none");
-        $('#dummy').css("background-color", "#051e08");
-        $('#textart').css("border", "none");
-        $('#footer').css("border", "none");
-        $('#interface').css("border", "none");
-        $('#one').css("border", "none");
-        $('#two').css("border", "none");
-        $('#three').css("border", "none");
-        $('#four').css("border", "none");
-        //resume page
-        $('.resume-text-area').css("border", "none");
-        $('#main').css("border","none");
-        $('#header').css("border","none");
-        $('#categories').css("border","none");
-        $('.category').css("border","none");
+    var x;
+    for (var elem in borders) {
+        if (elem[0] == "#") {
+            x = document.getElementById(elem.substr(1));
+            if (x != null && on == "1")
+                x.style.border = borders[elem];
+            else if (x != null && on == "0")
+                x.style.border = "none";
+        } else if (elem[0] == ".") {
+            x = document.getElementsByClassName(elem.substr(1));
+            for (var c = 0; c < x.length; c++) {
+                if (on == "1")
+                    x[c].style.border = borders[elem];
+                else if (on == "0")
+                    x[c].style.border = "none";
+            }
+        }
     }
 }
