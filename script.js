@@ -22,12 +22,11 @@ function startup() {
     if (getCookie("history") == null) {
         setCookie("history", "",365);
         setCookie("historyIndex",-1,365);
+    }
+    if (getCookie("settings") == null){
+        setCookie("settings","borders 0,retype 0,printArgs 0,rType 0,iType 0,mType 0",365);
     } else {
-        if (getCookie("settings") == null){
-            setCookie("settings","borders 0,retype 0,printArgs 0,rType 0,iType 0,mType 0",365);
-        } else {
-            setup();
-        }
+        setup();
     }
 }
 
