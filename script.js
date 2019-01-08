@@ -13,16 +13,33 @@ var borders = {
     //RESUME SPECIFIC BORDERS
     ,"#resumeLeft":"2px solid purple"
     ,"#resumeRight":"2px solid blue"
-}
-
+};
 
 function startup() {
+    var input = document.getElementById("dummy");
     document.getElementById("dummy").select();
+
     if (getCookie("history") == null) {
         setCookie("history", "",365);
         setCookie("historyIndex",-1,365);
     } else {
+        if (getCookie("settings") == null){
+            setCookie("settings","borders 0,retype 0,printArgs 0,rType 0,iType 0,mType 0",365);
+        } else {
+            setup();
+        }
+    }
+}
 
+function setup() {
+    border(getSetting("borders"));
+    retyp(getSetting("retype"));
+    if (window.location.pathname.search("resume.html") != -1) {
+        page = "r";
+    } else if (window.location.pathname.search("index.html") != -1) {
+        page = "m";
+    } else if (window.location.pathname.search("info.html") != -1) {
+        page = "i";
     }
 }
 
@@ -47,7 +64,7 @@ document.onkeydown = function (evt) {
             document.getElementById("field").innerHTML += evt.key;
         } else if (evt.key == "`") {
             //DEBUG KEY
-            listCookies();
+            console.log(setSetting("borders", "1"));
         }
     }
 }
@@ -83,6 +100,16 @@ function parse(input) {
                 document.getElementById("projects").click();
             } else if (args[0] == "EXPERIENCE") {
                 document.getElementById("experience").click();
+            } else if (args[0] == "ANIMATION") {
+                if (args[1] == "0") {
+                    hideOthers("x",rListIDs);
+                    clearTimeouts();
+                    setSetting("rType","0");
+                } else if (args[1] == "1") {
+                    hideOthers("x",rListIDs);
+                    clearTimeouts();
+                    setSetting("rType","1");
+                }
             }
         } else if (window.location.pathname.search("info.html") != -1) {
             //COMMANDS SPECIFIC TO INFO.HTML
@@ -94,6 +121,16 @@ function parse(input) {
                 document.getElementById("commands").click();
             } else if (args[0] == "BACK") {
                 document.getElementById("infoBack").click();
+            } else if (args[0] == "ANIMATION") {
+                if (args[1] == "0") {
+                    hideOthers("x",listIDs);
+                    clearTimeouts();
+                    setSetting("iType","0");
+                } else if (args[1] == "1") {
+                    hideOthers("x",listIDs);
+                    clearTimeouts();
+                    setSetting("iType","1");
+                }
             }
         } else {
             //COMMANDS SPECIFIC TO INDEX.HTML
@@ -123,17 +160,57 @@ function parse(input) {
             } else if (args[0] == "PDF") {
                 if (document.getElementById("mList4").getAttribute("class") != "w3-hide")
                     document.getElementById("m4b").click();
+            } else if (args[0] == "ANIMATION") {
+                if (args[1] == "0") {
+                    hideOthers("x",mListIDs);
+                    clearTimeouts();
+                    setSetting("mType","0");
+                } else if (args[1] == "1") {
+                    hideOthers("x",mListIDs);
+                    clearTimeouts();
+                    setSetting("mType","1");
+                }
             }
         }//COMMANDS THAT APPLY TO ALL PAGES
         if (args[0] == "RETYPE") {
-            retyp(args[1]);
+            if (args[1] == "0" || args[1] == "1") {
+                retyp(args[1]);
+                setSetting("retype",args[1]);
+            }
         } else if (args[0] == "RESET") {
             reset();
         } else if (args[0] == "BORDER") {
-            if (args[1] == "0" || args[1] == "1")
+            if (args[1] == "0" || args[1] == "1") {
                 border(args[1]);
+                setSetting("borders",args[1]);
+            }
         } else if (args[0] == "HISTORY") {
             history();
+        } else if (args[0] == "COOKIES") {
+            listCookies();
+        }
+    }
+}
+
+function getSetting(name) {
+    var settings = getCookie("settings").split(',');
+    for (var c = 0; c < settings.length; c++) {
+        var setting = settings[c].split(' ');
+        if (setting[0] == name) {
+            return setting[1];
+        }
+    }
+    return null;
+}
+
+function setSetting(name, newVal) {
+    var settings = getCookie("settings").split(',');
+    var newSetting = name + " " + newVal;
+    for (var c = 0; c < settings.length; c++) {
+        if (settings[c].split(" ")[0] == name) {
+            settings[c] = newSetting;
+            setCookie("settings",settings.toString(), 365);
+            return;
         }
     }
 }
@@ -221,7 +298,10 @@ function retyp(setting){
 }
 
 function reset(){
-    document.location.reload();
+    setCookie("settings","borders 0,retype 0,printArgs 0,rType 0, iType 0, mType 0",365);
+    setCookie("history", "",365);
+    setCookie("historyIndex",-1,365);
+    location.reload();
 }
 
 function selectBox(){

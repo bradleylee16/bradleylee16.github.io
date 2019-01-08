@@ -28,8 +28,10 @@ var list3 = {
     ,"i3b":"Turns on/off element div borders"
     ,"i3c":"> [retype 1] [retype 0]"
     ,"i3d":"Turns on/off repeating of the typing effect"
-    ,"i3e":"> [history]"
-    ,"i3f":"Prints in-site terminal history to JS terminal"
+    ,"i3e":"> [animation 1] [animation 0]"
+    ,"i3f":"Changes the animation style for that page"
+    ,"i3g":"> [history]"
+    ,"i3h":"Prints in-site terminal history to JS terminal"
 }
 var listIDs = {"list1":list1,"list2":list2,"list3":list3};
 var idClicked = {"list1":false,"list2":false,"list3":false};
@@ -128,6 +130,7 @@ var mList4 = {
 var mListIDs = {"mList1":mList1,"mList2":mList2,"mList3":mList3,"mList4":mList4};
 var mIdClicked = {"mList1":false,"mList2":false,"mList3":false,"mList4":false};
 
+var page = "m";
 var timeouts = [];
 var i = 0;
 //types every line in the map at once
@@ -141,8 +144,16 @@ function contentType2(map, speed) {
             }
         }
         i++;
-        timeouts.push(setTimeout(function(){contentType(map, speed)}, speed));
+        timeouts.push(setTimeout(function(){contentType2(map, speed)}, speed));
     }
+}
+function longestString(map) {
+    longest = 0;
+    for (var elem in map) {
+        if (map[elem].length > longest)
+            longest = map[elem].length;
+    }
+    return longest;
 }
 //typing animation for a single line
 //elem -> .html file id of element being typed in
@@ -172,7 +183,7 @@ function contentTypeAux(map, lst, speed) {
         timeouts.push(setTimeout(function(){
             i = 0;
             contentTypeAux(map, lst, speed);
-        }, text.length * speed + speed * 6));
+        }, text.length * speed + speed * 7));
     } else {
         type(lst[0], map[lst[0]], speed);
     }
@@ -194,10 +205,23 @@ function expandTab(id, idList) {
             instaComplete(idList);
         } else {
             idClicked[id] = true;
-            console.log(idList[id]);
-            contentType(idList[id], 25);
+            if (page == "m") {
+                if (getSetting("mType") == "0")
+                    contentType(idList[id], 25);
+                if (getSetting("mType") == "1")
+                    contentType2(idList[id], 25);
+            } else if (page == "r") {
+                if (getSetting("rType") == "0")
+                    contentType(idList[id], 25);
+                if (getSetting("rType") == "1")
+                    contentType2(idList[id], 25);
+            } else if (page == "i") {
+                if (getSetting("iType") == "0")
+                    contentType(idList[id], 25);
+                if (getSetting("iType") == "1")
+                    contentType2(idList[id], 25);
+            }
         }
-        
     }
 }
 //id -> div id you want to exempt from expansion
@@ -208,7 +232,6 @@ function hideOthers(id, idList) {
         if (elem != id) {
             document.getElementById(elem.toString()).setAttribute("class","w3-hide");
             for (var elem in idList[id]) {
-                console.log(elem);
                 document.getElementById(elem).innerHTML = "";
             }
         }

@@ -110,16 +110,20 @@ a{
 /*MAIN SPECIFIC CSS*/
 
 #mainTitle{
-    font-size: 1.7vw;
+    font-size: 1.5vw;
 }
 
 /*TERMINAL SPECIFIC CSS*/
 /*TERMINAL SPECIFIC CSS*/
 
+.footer {
+    border: 2px solid #00FF00;
+}
 .terminal{
     font-size: 3.5vw;
     color:#00FF00;
     font-family: Monospace;
+    background-color:#001500;
 }
 
 #dummy {
@@ -194,7 +198,7 @@ a{
         font-size: 13px;
     }
     #mainTitle{
-        font-size: 17px;
+        font-size: 15px;
     }
     .terminal{
         font-size: 35px;
@@ -230,7 +234,7 @@ a{
         font-size: 7px;
     }
     #mainTitle{
-        font-size: 9px;
+        font-size: 8px;
     }
     .terminal{
         font-size: 18px;
