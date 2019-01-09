@@ -19,7 +19,7 @@ a{
 
 .page{
     border: none;
-    height: 60vw;
+    height: 55vw;
 }
 
 .text{
@@ -66,6 +66,11 @@ a{
     border: none;
 }
 
+.smallerText{
+    font-size: 1.75vw;
+    border: none;
+}
+
 .tab {
     padding: 0vw;
     margin: 0vw;
@@ -104,6 +109,7 @@ a{
     border: none;
     float:right;
     width: 65%;
+    height: 43vw;
 }
 
 /*MAIN SPECIFIC CSS*/
@@ -116,9 +122,6 @@ a{
 /*TERMINAL SPECIFIC CSS*/
 /*TERMINAL SPECIFIC CSS*/
 
-.footer {
-    border: 2px solid #00FF00;
-}
 .terminal{
     font-size: 3.5vw;
     color:#00FF00;
@@ -145,7 +148,9 @@ a{
     font-family: Monospace;
 }
 
-#field::after {
+#cursor {
+    margin: 0;
+    padding: 0;
     content: "";
     top: 0;
     right: -10px;
@@ -153,10 +158,10 @@ a{
     background-color: #00FF00;
     width: 1.3vw;
     height: 2.5vw;
+    margin-top: .75vw;
     -webkit-animation: blink 1s step-end infinite;
     animation: blink 1s step-end infinite;
 }
-
 @-webkit-keyframes blink {
     0% { opacity: 1.0; }
     50% { opacity: 0.0; }
@@ -177,7 +182,7 @@ a{
         font-size: 20px;
     }
     .page{
-        height: 600px;
+        height: 550px;
     }
     .mainText{
         font-size: 20px;
@@ -187,6 +192,9 @@ a{
     }
     .smallText{
         font-size: 20px;
+    }
+    .smallerText{
+        font-size: 18px;
     }
     .tab {
         font-size: 30px;
@@ -203,9 +211,12 @@ a{
     .terminal{
         font-size: 35px;
     }
-    #field::after {
+    #cursor {
         width: 13px;
         height: 25px;
+    }
+    #resumeRight {
+        height: 430px;
     }
 }
 @media screen and (max-width: 500px) {
@@ -213,7 +224,7 @@ a{
         font-size: 10px;
     }
     .page{
-        height: 300px;
+        height: 275px;
     }
     .mainText{
         font-size: 10px;
@@ -223,6 +234,9 @@ a{
     }
     .smallText{
         font-size: 10px;
+    }
+    .smallerText{
+        font-size: 9px;
     }
     .tab {
         font-size: 15px;
@@ -239,8 +253,11 @@ a{
     .terminal{
         font-size: 18px;
     }
-    #field::after {
+    #cursor {
         width: 7px;
         height: 13px;
+    }
+    #resumeRight {
+        height: 215px;
     }
 }

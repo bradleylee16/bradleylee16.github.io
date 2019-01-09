@@ -96,12 +96,12 @@ var rList3 = {
 var rList4 = {
     "r4b":"IT Technician at University of Maryland"
     /*,"r4c":"Sept 2017 - Ongoing"*/
-    ,"r4d":"Provided University professors and staff with direct software and network support"
-    ,"r4e":"Worked independently and collaboratively with coworkers, under loose supervision"
-    ,"r4f":"Learned new IT skills on the job from coworkers and supervisors"
+    ,"r4d":"Provided faculty and staff with direct software and network support"
+    ,"r4e":"Worked independently and collaboratively under loose supervision"
+    ,"r4f":"Learned skills on the job from peers and supervisors"
     ,"r4g":"Trained newly hired technicians"
-    ,"r4h":"Volunteer at Liberty Science Center, Jersey City, NJ"
-    /*,"r4i":"Aug 2014 - 2015"*/
+    ,"r4h":"Volunteer at Liberty Science Center"
+    ,"r4i":"Jersey City, NJ - Aug 2014 - 2015"
     ,"r4j":"Led educational activities"
     ,"r4k":"Teaching assistant at summer camp"
     ,"r4l":"Volunteered 260 hours of service"
@@ -116,7 +116,7 @@ var mList1 = {
 }
 var mList2 = {
     "m2a": "> [Text Clock]",
-    "m2b": "> [Leetcodes]",
+    "m2b": "> [Github Code]",
     "m2c": "> Coming Soon!"
 }
 var mList3 = {

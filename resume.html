@@ -34,7 +34,7 @@
                         <li><p id="resumeBack" class="tab" onclick="document.location.href='index.html';">[Back]</p></li>
                     </ul>
                 </div>
-                <div id="resumeRight">
+                <div id="resumeRight" style="overflow: auto">
                     <div id="rList1" class="w3-hide">
                         <ul class="subText">
                             <li><a id="r1b" class="smallText"></a></li>
@@ -55,13 +55,13 @@
                     <div id="rList3" class="w3-hide">
                         <ul class="subText">
                             <li>&nbsp;<a id="r3b" class="smallText"></a></li>
-                            <ul class="smallText">
+                            <ul class="subText">
                                 <li><a id="r3c" class="smallText"></a></li>
                                 <li><a id="r3d" class="smallText"></a></li>
                                 <li><a id="r3e" class="smallText"></a></li>
                             </ul>
                             <li>&nbsp;<a id="r3f" class="smallText"></a></li>
-                            <ul class="smallText">
+                            <ul class="subText">
                                 <li><a id="r3g" class="smallText"></a></li>
                                 <li><a id="r3h" class="smallText"></a></li>
                                 <li><a id="r3i" class="smallText"></a></li>
@@ -71,17 +71,18 @@
                     <div id="rList4" class="w3-hide">
                         <ul class="subText">
                             <li>&nbsp;<a id="r4b" class="smallText"></a></li>
-                            <ul class="smallText">
-                                <li><a id="r4d" class="smallText"></a></li>
-                                <li><a id="r4e" class="smallText"></a></li>
-                                <li><a id="r4f" class="smallText"></a></li>
-                                <li><a id="r4g" class="smallText"></a></li>
+                            <ul class="subText">
+                                <li><a id="r4d" class="smallerText"></a></li>
+                                <li><a id="r4e" class="smallerText"></a></li>
+                                <li><a id="r4f" class="smallerText"></a></li>
+                                <li><a id="r4g" class="smallerText"></a></li>
                             </ul>
                             <li>&nbsp;<a id="r4h" class="smallText"></a></li>
                             <ul class="subText">
-                                <li><a id="r4j" class="smallText"></a></li>
-                                <li><a id="r4k" class="smallText"></a></li>
-                                <li><a id="r4l" class="smallText"></a></li>
+                                <li><a id="r4i" class="smallerText"></a></li>
+                                <li><a id="r4j" class="smallerText"></a></li>
+                                <li><a id="r4k" class="smallerText"></a></li>
+                                <li><a id="r4l" class="smallerText"></a></li>
                             </ul>
                         </ul>
                     </div>
@@ -89,7 +90,7 @@
             </div>
         </div>
         <div id="footer" class="terminal" onclick="selectBox()">
-            <span class="noselect">&nbsp;></span><span id="field"></span>
+            <span class="noselect">&nbsp;></span><span id="field"></span><span id="cursor"></span>
         </div>
         <textarea id="dummy" type="text" class="noselect" spellcheck="false"></textarea>
     </body>

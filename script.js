@@ -8,12 +8,20 @@ var borders = {
     ".page":"3px solid green"
     ,".header":"2px solid maroon"
     ,".smallText":"1px solid greenyellow"
+    ,".smallerText":"1px solid greenyellow"
     ,".tab":"1px solid pink"
     ,"#footer":"1px solid red"
     //RESUME SPECIFIC BORDERS
     ,"#resumeLeft":"2px solid purple"
-    ,"#resumeRight":"2px solid blue"
-};
+    ,"#resumeRight":"2px solid blue"};
+var colors = {
+    "GREEN":["#00ff00","#051e08","#001500"]
+    ,"RED": ["#ff0000","#1d0404","#150000"]
+    ,"CLASSIC":["#ffffff","#282828","#0f0f0f"]}
+
+var default_settings = "borders 0,retype 1,printArgs 0,rType 1,iType 0,mType 0,theme green";
+
+
 
 function startup() {
     var input = document.getElementById("dummy");
@@ -24,7 +32,7 @@ function startup() {
         setCookie("historyIndex",-1,365);
     }
     if (getCookie("settings") == null){
-        setCookie("settings","borders 0,retype 0,printArgs 0,rType 0,iType 0,mType 0",365);
+        setCookie("settings",default_settings,365);
     } else {
         setup();
     }
@@ -40,6 +48,7 @@ function setup() {
     } else if (window.location.pathname.search("info.html") != -1) {
         page = "i";
     }
+    setColor(getSetting("theme"));
 }
 
 document.onkeydown = function (evt) {
@@ -63,7 +72,7 @@ document.onkeydown = function (evt) {
             document.getElementById("field").innerHTML += evt.key;
         } else if (evt.key == "`") {
             //DEBUG KEY
-            console.log(setSetting("borders", "1"));
+            setColor("red");
         }
     }
 }
@@ -84,7 +93,8 @@ function parse(input) {
         input = input.replace(/(&nbsp;)+/g," ");
         var args = input.trim().split(/\s+/g);
         for (var x = 0; x < args.length; x++){args[x] = args[x].toUpperCase();}
-        console.log("args: [" + args.toString() + "]");
+        if (getSetting("printArgs") == "1")
+            console.log("args: [" + args.toString() + "]");
         if (window.location.pathname.search("resume.html") != -1) {
             //COMMANDS EXCLUSIVE TO RESUME.HTML
             if ((args[0] == "PDF" && args[1] == "VERSION") || args[0] == "PDF") {
@@ -169,6 +179,11 @@ function parse(input) {
                     clearTimeouts();
                     setSetting("mType","1");
                 }
+            } else if (args[0] == "THEME") {
+                if (colors[args[1]] != null) {
+                    setSetting("theme",args[1]);
+                    setColor(args[1]);
+                }
             }
         }//COMMANDS THAT APPLY TO ALL PAGES
         if (args[0] == "RETYPE") {
@@ -187,6 +202,9 @@ function parse(input) {
             history();
         } else if (args[0] == "COOKIES") {
             listCookies();
+        } else if (args[0] == "PRINTARGS") {
+            if (args[1] == "0" || args[1] == "1")
+                setSetting("printArgs",args[1]);
         }
     }
 }
@@ -235,6 +253,31 @@ function getCookie(cname) {
         }
     }
     return null;
+}
+//[text, background, terminal]
+function setColor(color) {
+    document.body.style.background = colors[color][1];
+    var x = document.getElementsByClassName("text");
+    for (var c = 0; c < x.length; c++)
+        x[c].style.color = colors[color][0];
+    x = document.getElementsByClassName("active:hover");
+    for (var c = 0; c < x.length; c++) {
+        x[c].style.color = colors[color][1];
+        x[c].style.backgroundColor = colors[color][0];
+    }
+    document.getElementsByClassName("terminal")[0].style.color = colors[color][0];
+    document.getElementsByClassName("terminal")[0].style.backgroundColor = colors[color][2];
+    document.getElementById("dummy").style.color = colors[color][1];
+    document.getElementById("dummy").style.backgroundColor = colors[color][1];
+    document.getElementById("cursor").style.backgroundColor = colors[color][0];
+    injectStyles(".active:hover{color:" + colors[color][1] + "; background-color: " + colors[color][0] + ";}");
+    injectStyles(".tab:hover{color:" + colors[color][1] + "; background-color: " + colors[color][0] + ";}");
+}
+
+function injectStyles(rule) {
+    var div = $("<div />", {
+        html: '&shy;<style>' + rule + '</style>'
+    }).appendTo("body");    
 }
 
 function historyPush(str) {
@@ -297,7 +340,7 @@ function retyp(setting){
 }
 
 function reset(){
-    setCookie("settings","borders 0,retype 0,printArgs 0,rType 0, iType 0, mType 0",365);
+    setCookie("settings",default_settings,365);
     setCookie("history", "",365);
     setCookie("historyIndex",-1,365);
     location.reload();
@@ -314,7 +357,6 @@ function print(arg) {
 function history() {
     str = getCookie("history");
     str = str.split(",");
-    console.log(str);
     display = "";
     var num = 1;
     for (var c = str.length-1; c >= 0; c--) {
