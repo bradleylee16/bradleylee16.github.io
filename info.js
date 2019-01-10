@@ -114,7 +114,7 @@ var rIdClicked = {"rList1":false,"rList2":false,"rList3":false,"rList4":false};
 var mList1 = {
     "m1a": "> Brad Lee is from New Jersey. He made this website",
     "m1b": "> Brad studies computer science at the University of Maryland",
-    "m1c": "> Click or type [Info] to find out more about this website"
+    "m1c": "> He enjoys coding, movies, and TV"
 }
 var mList2 = {
     "m2a": "> [Text Clock]",

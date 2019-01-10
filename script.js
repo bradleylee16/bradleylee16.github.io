@@ -152,8 +152,8 @@ function parse(input) {
             } else if (args[0] == "RESUME") {
                 document.getElementById("resume").click();
             } else if (args[0] == "INFO") {
-                if (document.getElementById("mList1").getAttribute("class") != "w3-hide")
-                    document.getElementById("m1c").click();
+                console.log("i hope it works");
+                document.getElementById("link1").click();
             } else if (args[0]+args[1] == "TEXTCLOCK") {
                 if (document.getElementById("mList2").getAttribute("class") != "w3-hide")
                     document.getElementById("m2a").click();
