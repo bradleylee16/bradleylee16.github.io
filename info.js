@@ -19,19 +19,21 @@ var list1 = {
     ,"i1c":"> Any text surrounded by [brackets] can be typed as a command"
 }
 var list2 = {
-    "i2a":"> Press Enter to skip a typing animation"
+     "i2a":"> Press Enter to skip a typing animation"
     ,"i2b":"> Press the arrow up and down keys to cycle through recent commands"
     ,"i2c":"> Settings and history will save between visits"
+    ,"i2d":"> Colors and animations customizable through commands"
+    ,"i2e": "> Commands are non case sensitive"
 }
 var list3 = {
-    "i3a":"> [border 1] [border 0]"
-    ,"i3b":"Turns on/off element div borders"
-    ,"i3c":"> [retype 1] [retype 0]"
-    ,"i3d":"Turns on/off repeating of the typing effect"
-    ,"i3e":"> [animation 1] [animation 0]"
-    ,"i3f":"Changes the animation style for that page"
-    ,"i3g":"> [history]"
-    ,"i3h":"Prints in-site terminal history to JS terminal"
+     "i3a":"> [animation 1] [animation 0]: Changes the animation style for that page"
+    ,"i3b":"> [border 1] [border 0]: Turns on/off element div borders"
+    ,"i3c":"> [theme #000000] Set theme to green,blue,red,purple,classic, or hex value"
+    ,"i3d":"> [retype 1] [retype 0]: Turns on/off repeating of the typing effect"
+    ,"i3e":"> [printArgs 1] [printArgs 0] toggles printing cmd args to JS terminal"
+    ,"i3f":"> [history]: Prints in-site terminal history to JS terminal"
+    ,"i3g":"> [cookies]: Prints all cookies saved on the site"
+    ,"i3h":"> [reset]: Resets all settings to default"
 }
 var listIDs = {"list1":list1,"list2":list2,"list3":list3};
 var idClicked = {"list1":false,"list2":false,"list3":false};

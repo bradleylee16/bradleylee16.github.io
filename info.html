@@ -27,7 +27,7 @@
                 <ul class="bulletless mainText">
                     <li><p id="siteNav" class="tab" onclick="expandTab('list1',listIDs)">[Site Navigation]</p>
                         <div id="list1" class="w3-hide">
-                            <ul class="bulletless subText">
+                            <ul class="bulletless subText fakeBulletList">
                                 <li>&nbsp;<a id="i1a" class="smallText"></a></li>
                                 <li>&nbsp;<a id="i1b" class="smallText"></a></li>
                                 <li>&nbsp;<a id="i1c" class="smallText"></a></li>
@@ -36,24 +36,26 @@
                     </li>
                     <li><p id="otherFeat" class="tab" onclick="expandTab('list2',listIDs)">[Other Features]</p>
                         <div id="list2" class="w3-hide">
-                            <ul class="bulletless subText">
+                            <ul class="bulletless subText fakeBulletList">
                                 <li>&nbsp;<a id="i2a" class="smallText"></a></li>
                                 <li>&nbsp;<a id="i2b" class="smallText"></a></li>
                                 <li>&nbsp;<a id="i2c" class="smallText"></a></li>
+                                <li>&nbsp;<a id="i2d" class="smallText"></a></li>
+                                <li>&nbsp;<a id="i2e" class="smallText"></a></li>
                             </ul>
                         </div>
                     </li>
                     <li><p id="commands" class="tab" onclick="expandTab('list3',listIDs)">[Commands]</p>
-                        <div id="list3" class="w3-hide">
-                            <ul class="bulletless subText">
+                        <div id="list3" class="w3-hide" style="overflow: auto">
+                            <ul class="bulletless subText fakeBulletList">
                                 <li>&nbsp;<a id="i3a" class="smallText"></a></li>
-                                <span><ul id="i3b" class="smallerText bulletless"></ul></span>
+                                <li>&nbsp;<a id="i3b" class="smallText"></a></li>
                                 <li>&nbsp;<a id="i3c" class="smallText"></a></li>
-                                <span><ul id="i3d" class="smallerText bulletless"></ul></span>
+                                <li>&nbsp;<a id="i3d" class="smallText"></a></li>
                                 <li>&nbsp;<a id="i3e" class="smallText"></a></li>
-                                <span><ul id="i3f" class="smallerText bulletless"></ul></span>
+                                <li>&nbsp;<a id="i3f" class="smallText"></a></li>
                                 <li>&nbsp;<a id="i3g" class="smallText"></a></li>
-                                <span><ul id="i3h" class="smallerText bulletless"></ul></span>
+                                <li>&nbsp;<a id="i3h" class="smallText"></a></li>
                             </ul>
                         </div>
                     </li>
@@ -65,5 +67,8 @@
             <span class="noselect">&nbsp;></span><span id="field"></span><span id="cursor"></span>
         </div>
         <textarea id="dummy" type="text" class="noselect" spellcheck="false"></textarea>
+        <div data-video="QEQFdd_qg_w" data-autoplay="0" data-loop="1" id="youtube-audio" class="w3-hide"></div>
+        <script src="https://www.youtube.com/iframe_api"></script>
+        <script src="https://cdn.rawgit.com/labnol/files/master/yt.js"></script>
     </body>
 </html>

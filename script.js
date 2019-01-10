@@ -1,7 +1,7 @@
 var allowedChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
                     "p","q","r","s","t","u","v","w","x","y","z","A","B","C","D",
                     "E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S",
-                    "T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"];
+                    "T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0","#"];
 var entered;
 var retype = false;
 var borders = {
@@ -15,13 +15,13 @@ var borders = {
     ,"#resumeLeft":"2px solid purple"
     ,"#resumeRight":"2px solid blue"};
 var colors = {
-    "GREEN":["#00ff00","#051e08","#001500"]
+    "GREEN":["#00ff00","#002000","#001000"]
     ,"RED": ["#ff0000","#1d0404","#150000"]
-    ,"CLASSIC":["#ffffff","#282828","#0f0f0f"]}
+    ,"CLASSIC":["#ffffff","#0a0a0a","#000000"]
+    ,"PURPLE":["#ff00ee","#260023","#190017"]
+    ,"BLUE":["#00D8FF","#002026","#001519"]}
 
-var default_settings = "borders 0,retype 1,printArgs 0,rType 1,iType 0,mType 0,theme green";
-
-
+var default_settings = "borders 0,retype 1,printArgs 0,rType 1,iType 1,mType 0,theme GREEN";
 
 function startup() {
     var input = document.getElementById("dummy");
@@ -68,11 +68,11 @@ document.onkeydown = function (evt) {
             displayDown();
         } else if (evt.keyCode == 32 && document.getElementById("field").innerHTML.replace(/&nbsp;/g,"#").length <= 28) {
             document.getElementById("field").innerHTML += "&nbsp;";
+            return !(evt.keyCode == 32);
         } else if (allowedChars.includes(evt.key) && document.getElementById("field").innerHTML.replace(/&nbsp;/g,"#").length <= 28) {
             document.getElementById("field").innerHTML += evt.key;
         } else if (evt.key == "`") {
             //DEBUG KEY
-            setColor("red");
         }
     }
 }
@@ -88,7 +88,7 @@ function parse(input) {
         } else {
             instaComplete(mListIDs);
         }
-    } else if (input.match(/^(&nbsp;)*[A-Za-z0-9]+(&nbsp;)*[A-Za-z0-9]*(&nbsp;)*$/)) {
+    } else if (input.match(/^(&nbsp;)*[A-Za-z0-9]+(&nbsp;)*[#|A-Za-z0-9]*(&nbsp;)*$/)) {
         historyPush(input.toString());
         input = input.replace(/(&nbsp;)+/g," ");
         var args = input.trim().split(/\s+/g);
@@ -157,7 +157,7 @@ function parse(input) {
             } else if (args[0]+args[1] == "TEXTCLOCK") {
                 if (document.getElementById("mList2").getAttribute("class") != "w3-hide")
                     document.getElementById("m2a").click();
-            } else if (args[0] == "LEETCODES") {
+            } else if (args[0] == "GITHUB" && args[1] == "CODE") {
                 if (document.getElementById("mList2").getAttribute("class") != "w3-hide")
                     document.getElementById("m2b").click();
             } else if (args[0] == "LINKEDIN") {
@@ -178,11 +178,6 @@ function parse(input) {
                     hideOthers("x",mListIDs);
                     clearTimeouts();
                     setSetting("mType","1");
-                }
-            } else if (args[0] == "THEME") {
-                if (colors[args[1]] != null) {
-                    setSetting("theme",args[1]);
-                    setColor(args[1]);
                 }
             }
         }//COMMANDS THAT APPLY TO ALL PAGES
@@ -205,7 +200,23 @@ function parse(input) {
         } else if (args[0] == "PRINTARGS") {
             if (args[1] == "0" || args[1] == "1")
                 setSetting("printArgs",args[1]);
+        } else if (args[0] == "THEME") {
+            if (args[1] != undefined && (colors[args[1]] != null || args[1][0] == "#")) {
+                setSetting("theme",args[1]);
+                setColor(args[1]);
+            }
+        } else if (args[0] == "JOJO") {
+            document.getElementById("youtube-audio").click();
         }
+    }
+}
+
+function togglePlayer() {
+    var x = document.getElementById("youtube-audio");
+    if (x.getAttribute("class") == "w3-hide") {
+        x.setAttribute("class","w3-show");
+    } else {
+        x.setAttribute("class","w3-hide");
     }
 }
 
@@ -256,22 +267,65 @@ function getCookie(cname) {
 }
 //[text, background, terminal]
 function setColor(color) {
-    document.body.style.background = colors[color][1];
+    var newColor;
+    if (color[0] == "#") {
+        newColor = getTheme(color);
+    } else {
+        newColor = colors[color];
+    }
+    document.body.style.background = newColor[1];
     var x = document.getElementsByClassName("text");
     for (var c = 0; c < x.length; c++)
-        x[c].style.color = colors[color][0];
+        x[c].style.color = newColor[0];
     x = document.getElementsByClassName("active:hover");
     for (var c = 0; c < x.length; c++) {
-        x[c].style.color = colors[color][1];
-        x[c].style.backgroundColor = colors[color][0];
+        x[c].style.color = newColor[1];
+        x[c].style.backgroundColor = newColor[0];
     }
-    document.getElementsByClassName("terminal")[0].style.color = colors[color][0];
-    document.getElementsByClassName("terminal")[0].style.backgroundColor = colors[color][2];
-    document.getElementById("dummy").style.color = colors[color][1];
-    document.getElementById("dummy").style.backgroundColor = colors[color][1];
-    document.getElementById("cursor").style.backgroundColor = colors[color][0];
-    injectStyles(".active:hover{color:" + colors[color][1] + "; background-color: " + colors[color][0] + ";}");
-    injectStyles(".tab:hover{color:" + colors[color][1] + "; background-color: " + colors[color][0] + ";}");
+    document.getElementsByClassName("terminal")[0].style.color = newColor[0];
+    document.getElementsByClassName("terminal")[0].style.backgroundColor = newColor[2];
+    document.getElementById("dummy").style.color = newColor[1];
+    document.getElementById("dummy").style.backgroundColor = newColor[1];
+    document.getElementById("cursor").style.backgroundColor = newColor[0];
+    document.getElementById("field").style.color = newColor[0];
+    injectStyles(".active:hover{color:" + newColor[1] + "; background-color: " + newColor[0] + ";}");
+    injectStyles(".tab:hover{color:" + newColor[1] + "; background-color: " + newColor[0] + ";}");
+}
+
+function getTheme(color) {
+    var result = [["#------"],["#------"],["#------"]];
+    if (color.search(/#[A-F0-9]{6}/) == 0) {
+        if (color == "#000000") {
+            //return [["#FFFFFF"],["#101010"],["#000000"]];
+        }
+        var rgb = [parseInt(color[1]+color[2],16), parseInt(color[3]+color[4],16), parseInt(color[5]+color[6],16)];
+        if (Math.max(...rgb ) < (.6 * 255)) {
+            //input color is DARK between 0%-59%
+            var diff = 255 - Math.max(...rgb);
+            result[0] = "#" + toHex(rgb[0] + diff) + toHex(rgb[1] + diff) + toHex(rgb[2] + diff);
+            if (Math.max(...rgb) < 25) {
+                result[1] = "#" + toHex(rgb[0] + 10) + toHex(rgb[1] + 10) + toHex(rgb[2] + 10);
+                result[2] = color;
+            } else {
+                result[2] = "#" + toHex(rgb[0] - .5*rgb[0]) + toHex(rgb[1] - .5*rgb[1]) + toHex(rgb[2] - .5*rgb[2]);
+                result[1] = color;
+            }
+        } else {
+            //input color is LIGHT between 60%-100%
+            result[0] = color;
+            result[1] = "#" + toHex(rgb[0] - .85*rgb[0]) + toHex(rgb[1] - .85*rgb[1]) + toHex(rgb[2] - .85*rgb[2]);
+            result[2] = "#" + toHex(rgb[0] - .90*rgb[0]) + toHex(rgb[1] - .90*rgb[1]) + toHex(rgb[2] - .90*rgb[2]);
+        }
+        for (var z = 0; z < result.length; z ++) {result[z] = result[z].toUpperCase();}
+        return result;
+    }
+}
+
+function toHex(num){
+    var hexString = Math.floor(num).toString(16);
+    if (hexString.length % 2)
+        hexString = '0' + hexString;
+    return hexString;
 }
 
 function injectStyles(rule) {
@@ -282,7 +336,7 @@ function injectStyles(rule) {
 
 function historyPush(str) {
     var list = getCookie("history");
-    var input = str.replace(/&nbsp;/g, "#");
+    var input = str.replace(/&nbsp;/g, "-");
     if (list == "") {
         setCookie("history",input);
     } else {
@@ -301,7 +355,7 @@ function displayUp() {
     var history = getCookie("history").split(',');
     var historyIndex = Number(getCookie("historyIndex"));
     if (historyIndex >= 0) {
-        var output = history[historyIndex].replace(/#/g,"&nbsp;");
+        var output = history[historyIndex].replace(/-/g,"&nbsp;");
         document.getElementById("field").innerHTML = output;
         setCookie("historyIndex", historyIndex-1);
     } else {

@@ -22,6 +22,11 @@ a{
     height: 55vw;
 }
 
+.fakeBulletList {
+    text-indent: -4.5vw;
+    margin-left: 4vw;
+}
+
 .text{
     color:#00FF00;
     font-family: Monospace;
@@ -90,6 +95,9 @@ a{
 
 #infoTitle{
     font-size: 1.3vw;
+}
+#list3{
+    max-height: 25vw;
 }
 
 
