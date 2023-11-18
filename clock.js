@@ -4,7 +4,7 @@ var minute = day.getMinutes();
 var seconds = day.getSeconds();
 var hourDisp = hour;
 
-speeds = [1, 2, 4, 16, 32, 64, 128];
+speeds = [1, 2, 4, 16, 32, 64, 128, 256, 512, 1000];
 speedIndex = 0;
 refresh_rate = 1000/speeds[speedIndex];
 
@@ -36,7 +36,6 @@ document.onkeydown = function (evt) {
             minute = day.getMinutes();
             seconds = day.getSeconds();
         }
-        console.log(refresh_rate);
     }
 }
 
@@ -44,11 +43,11 @@ function setTime() {
     seconds += 1;
     if (seconds >= 60) {
         minute += 1;
-        seconds = seconds - 60;
+        seconds =- 60;
     }
     if (minute >= 60) {
         hourDisp += 1;
-        minute = minute - 60;
+        minute -= 60;
     }
     if (hourDisp >= 12) {
         hourDisp = 1;
@@ -69,89 +68,53 @@ function setTime() {
 }
 
 function displayTime() {
+    clearAll()
     if (hour > 12) { //convert the 24 hour time representation into 12 hour time representation
         hourDisp = hour-12;
-    } else if (hour == 0)
-        hourDisp = 12;
-
-    if (minute >= 40) { //light up the correct "hour" number
-        if (hourDisp == 12) {
-            //document.getElementById("12").setAttribute("class", "text");
-            clearHour();
-            document.getElementById("1").setAttribute("class", "text lit");
-        } else {
-            //document.getElementById(hourDisp.toString()).setAttribute("class", "text");
-            clearHour();
-            document.getElementById((hourDisp + 1).toString()).setAttribute("class", "text lit");
-        }
-    } else {
-        if (hourDisp == 1) {
-            //document.getElementById("12").setAttribute("class", "text");
-            clearHour();
-            document.getElementById(hourDisp.toString()).setAttribute("class", "text lit");
-        } else {
-            //document.getElementById((hourDisp - 1).toString()).setAttribute("class", "text");
-            clearHour();
-            document.getElementById(hourDisp.toString()).setAttribute("class", "text lit");
-        }
+    } else if (hour == 0) {
+        hourDisp = 12
     }
-
-    if (!(minute >= 0 && minute < 5)) { //lights up either "to" or "past"
-        if (minute < 40) {
-            document.getElementById("to").setAttribute("class", "text");
-            document.getElementById("past").setAttribute("class", "text lit");
-        } else {
-            document.getElementById("past").setAttribute("class", "text");
-            document.getElementById("to").setAttribute("class", "text lit");
-        }
+    let boost = minute >= 40 ? 1 : 0
+    hourElementId = hourDisp + boost
+    if (hourElementId > 12) { //convert the 24 hour time representation into 12 hour time representation
+        hourElementId = hour-12;
     }
+    document.getElementById(hourElementId.toString()).setAttribute("class", "text lit");
 
-    if (!(minute >= 0 && minute < 5)) { //lights up "O'Clock"
-        document.getElementById("oclock").setAttribute("class", "text");
-    } else {
-        document.getElementById("oclock").setAttribute("class", "text lit");
-    }
-    
-    if ((minute < 5) || (minute >= 15 && minute < 20) || (minute >= 30 && minute < 40) || (minute >= 45 && minute < 50)) {//lights up "minutes"
-        document.getElementById("minutes").setAttribute("class", "text");
-    } else {
-        document.getElementById("minutes").setAttribute("class", "text lit");
-    }
-
-    if (minute >= 5 && minute < 10) { //correctly lights up minute
-        document.getElementById("5m").setAttribute("class", "text lit");
+    // minute changes at 5, 10, 15, 20, 30, 40, 45, 50, 55, 60
+    if (minute >= 5 && minute < 10) {
+        document.getElementById("5m").setAttribute("class", "text lit")
     } else if (minute >= 10 && minute < 15) {
-        clearMinute();
-        document.getElementById("10").setAttribute("class", "text lit");
+        document.getElementById("10m").setAttribute("class", "text lit")
     } else if (minute >= 15 && minute < 20) {
-        clearMinute();
-        document.getElementById("15").setAttribute("class", "text lit");
+        document.getElementById("15").setAttribute("class", "text lit")
     } else if (minute >= 20 && minute < 30) {
-        clearMinute();
-        document.getElementById("20").setAttribute("class", "text lit");
+        document.getElementById("20").setAttribute("class", "text lit")
     } else if (minute >= 30 && minute < 40) {
-        clearMinute();
-        document.getElementById("30").setAttribute("class", "text lit");
+        document.getElementById("30").setAttribute("class", "text lit")
     } else if (minute >= 40 && minute < 45) {
-        clearMinute();
-        document.getElementById("20").setAttribute("class", "text lit");
+        document.getElementById("20").setAttribute("class", "text lit")
     } else if (minute >= 45 && minute < 50) {
-        clearMinute();
-        document.getElementById("15").setAttribute("class", "text lit");
+        document.getElementById("15").setAttribute("class", "text lit")
     } else if (minute >= 50 && minute < 55) {
-        clearMinute();
-        document.getElementById("10").setAttribute("class", "text lit");
+        document.getElementById("10m").setAttribute("class", "text lit")
     } else if (minute >= 55 && minute < 60) {
-        clearMinute();
-        document.getElementById("5m").setAttribute("class", "text lit");
-    } else if (minute == 0) {
-        clearMinute();
+        document.getElementById("5m").setAttribute("class", "text lit")
     }
+
+    if (minute >= 0 && minute < 5) {
+        document.getElementById("oclock").setAttribute("class", "text lit");
+    } else if (minute >= 5 && minute < 40) {
+        document.getElementById("past").setAttribute("class", "text lit");
+    } else if (minute >= 40){
+        document.getElementById("to").setAttribute("class", "text lit");
+    }
+
     setTime();
-    var t = setTimeout(displayTime, refresh_rate);
+    var t = setTimeout(displayTime2, refresh_rate);
 }
 
-function clearHour() {
+function clearAll() {
     document.getElementById("1").setAttribute("class", "text");
     document.getElementById("2").setAttribute("class", "text");
     document.getElementById("3").setAttribute("class", "text");
@@ -165,12 +128,12 @@ function clearHour() {
     document.getElementById("11").setAttribute("class", "text");
     document.getElementById("12").setAttribute("class", "text");
     document.getElementById("to").setAttribute("class", "text");
-}
-
-function clearMinute() {
     document.getElementById("30").setAttribute("class", "text");
     document.getElementById("15").setAttribute("class", "text");
-    document.getElementById("10").setAttribute("class", "text");
+    document.getElementById("10m").setAttribute("class", "text");
     document.getElementById("20").setAttribute("class", "text");
     document.getElementById("5m").setAttribute("class", "text");
+    document.getElementById("oclock").setAttribute("class", "text");
+    document.getElementById("to").setAttribute("class", "text");
+    document.getElementById("past").setAttribute("class", "text");
 }
