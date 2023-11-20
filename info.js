@@ -113,17 +113,15 @@ var rListIDs = {"rList1":rList1,"rList2":rList2,"rList3":rList3,"rList4":rList4}
 var rIdClicked = {"rList1":false,"rList2":false,"rList3":false,"rList4":false};
 //MAIN TEXT
 var mList1 = {
-    "m1a": "> Brad Lee is from NJ, but now lives in Brooklyn. He made this website",
-    "m1b": "> Brad studied computer science at the University of Maryland",
-    "m1c": "> He enjoys coding, movies, and TV"
+    "m1a": "> Brooklyn based software enginner. Creator of this website",
+    "m1b": "> Studied computer science at the University of Maryland",
+    "m1c": "> Enjoys tennis, coding, and movies"
 }
 var mList2 = {
     "m2a": "> [Text Clock]",
-    "m2b": "> [Github Code]",
     "m2c": "> Coming Soon(ish)!"
 }
 var mList3 = {
-    "m3a": "> notarealemail@gmail.com",
     "m3b": "> [Linkedin]"
 }
 var mList4 = {
