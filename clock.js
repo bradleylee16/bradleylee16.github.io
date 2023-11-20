@@ -43,7 +43,7 @@ function setTime() {
     seconds += 1;
     if (seconds >= 60) {
         minute += 1;
-        seconds =- 60;
+        seconds -= 60;
     }
     if (minute >= 60) {
         hourDisp += 1;
@@ -111,7 +111,7 @@ function displayTime() {
     }
 
     setTime();
-    var t = setTimeout(displayTime2, refresh_rate);
+    setTimeout(displayTime, refresh_rate);
 }
 
 function clearAll() {
