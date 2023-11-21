@@ -113,9 +113,9 @@ var rListIDs = {"rList1":rList1,"rList2":rList2,"rList3":rList3,"rList4":rList4}
 var rIdClicked = {"rList1":false,"rList2":false,"rList3":false,"rList4":false};
 //MAIN TEXT
 var mList1 = {
-    "m1a": "> Brooklyn based software enginner. Creator of this website",
+    "m1a": "> Brooklyn based Software Engineer",
     "m1b": "> Studied computer science at the University of Maryland",
-    "m1c": "> Enjoys tennis, coding, and movies"
+    "m1c": "> Enjoys tennis, coding, movies, and more!"
 }
 var mList2 = {
     "m2a": "> [Text Clock]",
