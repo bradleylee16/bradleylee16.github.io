@@ -208,9 +208,9 @@ function expandTab(id, idList) {
             idClicked[id] = true;
             if (page == "m") {
                 if (getSetting("mType") == "0")
-                    contentType(idList[id], 25);
+                    contentType(idList[id], 30);
                 if (getSetting("mType") == "1")
-                    contentType2(idList[id], 25);
+                    contentType2(idList[id], 30);
             } else if (page == "r") {
                 if (getSetting("rType") == "0")
                     contentType(idList[id], 25);
